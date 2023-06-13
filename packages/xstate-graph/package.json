@@ -13,37 +13,24 @@
   "author": "David Khourshid <davidkpiano@gmail.com>",
   "homepage": "https://github.com/statelyai/xstate/tree/main/packages/xstate-test#readme",
   "license": "MIT",
-  "main": "dist/xstate-graph.cjs.js",
-  "module": "dist/xstate-graph.esm.js",
-  "exports": {
-    ".": {
-      "types": {
-        "import": "./dist/xstate-graph.cjs.mjs",
-        "default": "./dist/xstate-graph.cjs.js"
-      },
-      "module": "./dist/xstate-graph.esm.js",
-      "import": "./dist/xstate-graph.cjs.mjs",
-      "default": "./dist/xstate-graph.cjs.js"
-    },
-    "./package.json": "./package.json"
-  },
+  "main": "src/index.js",
+  "types": "src/index.d.ts",
   "sideEffects": false,
-  "files": [
-    "dist"
-  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/statelyai/xstate.git"
   },
-  "scripts": {},
+  "scripts": {
+    "postinstall": "pnpm --package=typescript@latest dlx tsc --isolatedModules --declaration --allowImportingTsExtensions ./src/**/*.ts"
+  },
   "bugs": {
     "url": "https://github.com/statelyai/xstate/issues"
   },
   "peerDependencies": {
-    "xstate": "^5.0.0-beta.13"
+    "xstate": "5.0.0-beta.14"
   },
   "devDependencies": {
-    "xstate": "5.0.0-beta.13"
+    "xstate": "5.0.0-beta.14"
   },
   "dependencies": {}
 }
