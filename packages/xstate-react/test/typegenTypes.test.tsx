@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { ActorRefFrom, assign, createMachine, TypegenMeta } from 'xstate';
-import { createActorContext, useActorRef, useMachine } from '../src/index.ts';
+import { createActorContext, useActorRef, useMachine } from '../src/index';
 
 describe('useMachine', () => {
   it('should allow to be used with a machine without any missing implementations', () => {
@@ -88,14 +88,14 @@ describe('useMachine', () => {
         // @ts-expect-error
         machine.provide({
           actions: {
-            myAction: () => {}
+            myAction: () => { }
           }
         })
       );
       useMachine(
         machine.provide({
           actions: {
-            myAction: () => {}
+            myAction: () => { }
           },
           delays: {
             myDelay: () => 42
@@ -138,7 +138,7 @@ describe('useMachine', () => {
       useMachine(
         machine.provide({
           actions: {
-            fooAction: () => {}
+            fooAction: () => { }
           },
           delays: {
             barDelay: () => 100
@@ -176,7 +176,7 @@ describe('useMachine', () => {
         machine.provide({
           actions: {
             // it's important to use `event` here somehow to make this a possible source of information for inference
-            fooAction: () => {}
+            fooAction: () => { }
           }
         })
       );
@@ -211,9 +211,9 @@ describe('useMachine', () => {
         machine.provide({
           actions: {
             fooAction: assign(({ event }) => {
-              ((_accept: 'FOO') => {})(event.type);
+              ((_accept: 'FOO') => { })(event.type);
               // @ts-expect-error
-              ((_accept: "test that this isn't any") => {})(event.type);
+              ((_accept: "test that this isn't any") => { })(event.type);
             })
           }
         })
@@ -308,12 +308,12 @@ describe('useActorRef', () => {
       // @ts-expect-error
       useActorRef(machine, {
         actions: {
-          myAction: () => {}
+          myAction: () => { }
         }
       });
       useActorRef(machine, {
         actions: {
-          myAction: () => {}
+          myAction: () => { }
         },
         delays: {
           myDelay: () => 42
@@ -354,7 +354,7 @@ describe('useActorRef', () => {
     function App() {
       useActorRef(machine, {
         actions: {
-          fooAction: () => {}
+          fooAction: () => { }
         },
         delays: {
           barDelay: () => 100
@@ -390,7 +390,7 @@ describe('useActorRef', () => {
       useActorRef(machine, {
         actions: {
           // it's important to use `event` here somehow to make this a possible source of information for inference
-          fooAction: () => {}
+          fooAction: () => { }
         }
       });
       return null;
@@ -424,9 +424,9 @@ describe('useActorRef', () => {
         machine.provide({
           actions: {
             fooAction: assign(({ event }) => {
-              ((_accept: 'FOO') => {})(event.type);
+              ((_accept: 'FOO') => { })(event.type);
               // @ts-expect-error
-              ((_accept: "test that this isn't any") => {})(event.type);
+              ((_accept: "test that this isn't any") => { })(event.type);
             })
           }
         })
@@ -495,7 +495,7 @@ describe('useActorRef', () => {
       types: { typegen: {} as TypesMeta }
     });
 
-    function ChildComponent({}: { actorRef: ActorRefFrom<typeof machine> }) {
+    function ChildComponent({ }: { actorRef: ActorRefFrom<typeof machine> }) {
       return null;
     }
 
@@ -503,7 +503,7 @@ describe('useActorRef', () => {
       const actorRef = useActorRef(
         machine.provide({
           actions: {
-            someAction: () => {}
+            someAction: () => { }
           }
         })
       );
@@ -528,7 +528,7 @@ describe('useActorRef', () => {
       types: { typegen: {} as TypesMeta }
     });
 
-    function ChildComponent({}: { actorRef: ActorRefFrom<typeof machine> }) {
+    function ChildComponent({ }: { actorRef: ActorRefFrom<typeof machine> }) {
       return null;
     }
 
@@ -536,7 +536,7 @@ describe('useActorRef', () => {
       const actorRef = useActorRef(
         machine.provide({
           actions: {
-            someAction: () => {}
+            someAction: () => { }
           }
         })
       );
@@ -644,7 +644,7 @@ describe('createActorContext', () => {
           // @ts-expect-error
           options={{
             actions: {
-              myAction: () => {}
+              myAction: () => { }
             }
           }}
         >
@@ -655,7 +655,7 @@ describe('createActorContext', () => {
         <Context.Provider
           logic={machine.provide({
             actions: {
-              myAction: () => {}
+              myAction: () => { }
             },
             delays: {
               myDelay: () => 42
@@ -705,7 +705,7 @@ describe('createActorContext', () => {
         <Context.Provider
           logic={machine.provide({
             actions: {
-              fooAction: () => {}
+              fooAction: () => { }
             },
             delays: {
               barDelay: () => 100
@@ -748,7 +748,7 @@ describe('createActorContext', () => {
           logic={machine.provide({
             actions: {
               // it's important to use `event` here somehow to make this a possible source of information for inference
-              fooAction: () => {}
+              fooAction: () => { }
             }
           })}
         >
@@ -788,9 +788,9 @@ describe('createActorContext', () => {
           logic={machine.provide({
             actions: {
               fooAction: assign(({ event }) => {
-                ((_accept: 'FOO') => {})(event.type);
+                ((_accept: 'FOO') => { })(event.type);
                 // @ts-expect-error
-                ((_accept: "test that this isn't any") => {})(event.type);
+                ((_accept: "test that this isn't any") => { })(event.type);
               })
             }
           })}
@@ -820,12 +820,12 @@ describe('createActorContext', () => {
     const Context = createActorContext(
       machine.provide({
         actions: {
-          someAction: () => {}
+          someAction: () => { }
         }
       })
     );
 
-    function GrandchildComponent({}: {
+    function GrandchildComponent({ }: {
       actorRef: ActorRefFrom<typeof machine>;
     }) {
       return null;

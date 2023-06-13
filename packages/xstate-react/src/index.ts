@@ -1,8 +1,8 @@
-export { useActor } from './useActor.ts';
-export { useActorRef } from './useActorRef.ts';
-export { useSelector } from './useSelector.ts';
-export { shallowEqual } from './shallowEqual.ts';
-export { createActorContext } from './createActorContext.ts';
+export { useActor } from './useActor';
+export { useActorRef } from './useActorRef';
+export { useSelector } from './useSelector';
+export { shallowEqual } from './shallowEqual';
+export { createActorContext } from './createActorContext';
 
 // deprecated
-export { useMachine } from './useMachine.ts';
+export { useMachine } from './useMachine';

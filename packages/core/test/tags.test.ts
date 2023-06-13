@@ -1,4 +1,4 @@
-import { createMachine, interpret } from '../src/index.ts';
+import { createMachine, interpret } from '../src/index';
 
 describe('tags', () => {
   it('supports tagging states', () => {

@@ -15,7 +15,7 @@ import {
   toObserver,
   SnapshotFrom
 } from 'xstate';
-import useConstant from './useConstant.ts';
+import useConstant from './useConstant';
 import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
 
 export function useIdleInterpreter(
@@ -48,37 +48,37 @@ export function useIdleInterpreter(
 
 type RestParams<TLogic extends AnyActorLogic> = TLogic extends AnyStateMachine
   ? AreAllImplementationsAssumedToBeProvided<
-      TLogic['__TResolvedTypesMeta']
-    > extends false
-    ? [
-        options: InterpreterOptions<TLogic> &
-          InternalMachineImplementations<
-            TLogic['__TContext'],
-            TLogic['__TEvent'],
-            TLogic['__TResolvedTypesMeta'],
-            true
-          >,
-        observerOrListener?:
-          | Observer<StateFrom<TLogic>>
-          | ((value: StateFrom<TLogic>) => void)
-      ]
-    : [
-        options?: InterpreterOptions<TLogic> &
-          InternalMachineImplementations<
-            TLogic['__TContext'],
-            TLogic['__TEvent'],
-            TLogic['__TResolvedTypesMeta']
-          >,
-        observerOrListener?:
-          | Observer<StateFrom<TLogic>>
-          | ((value: StateFrom<TLogic>) => void)
-      ]
+    TLogic['__TResolvedTypesMeta']
+  > extends false
+  ? [
+    options: InterpreterOptions<TLogic> &
+    InternalMachineImplementations<
+      TLogic['__TContext'],
+      TLogic['__TEvent'],
+      TLogic['__TResolvedTypesMeta'],
+      true
+    >,
+    observerOrListener?:
+    | Observer<StateFrom<TLogic>>
+    | ((value: StateFrom<TLogic>) => void)
+  ]
   : [
-      options?: InterpreterOptions<TLogic>,
-      observerOrListener?:
-        | Observer<SnapshotFrom<TLogic>>
-        | ((value: SnapshotFrom<TLogic>) => void)
-    ];
+    options?: InterpreterOptions<TLogic> &
+    InternalMachineImplementations<
+      TLogic['__TContext'],
+      TLogic['__TEvent'],
+      TLogic['__TResolvedTypesMeta']
+    >,
+    observerOrListener?:
+    | Observer<StateFrom<TLogic>>
+    | ((value: StateFrom<TLogic>) => void)
+  ]
+  : [
+    options?: InterpreterOptions<TLogic>,
+    observerOrListener?:
+    | Observer<SnapshotFrom<TLogic>>
+    | ((value: SnapshotFrom<TLogic>) => void)
+  ];
 
 export function useActorRef<TLogic extends AnyActorLogic>(
   machine: TLogic,

@@ -1,5 +1,5 @@
-import { createDynamicAction } from '../../actions/dynamicAction.ts';
-import * as actionTypes from '../actionTypes.ts';
+import { createDynamicAction } from '../../actions/dynamicAction';
+import * as actionTypes from '../actionTypes';
 import {
   EventObject,
   MachineContext,
@@ -12,7 +12,7 @@ import {
   NoInfer,
   UnifiedArg,
   StateMeta
-} from '../types.ts';
+} from '../types';
 
 /**
  * Raises an event. This places the event in the internal event queue, so that
@@ -47,8 +47,8 @@ export function raise<
           options && options.id !== undefined
             ? options.id
             : typeof eventOrExpr === 'function'
-            ? eventOrExpr.name
-            : eventOrExpr.type
+              ? eventOrExpr.name
+              : eventOrExpr.type
       }
     },
     (event, { state, actorContext }) => {
@@ -59,8 +59,8 @@ export function raise<
           options && options.id !== undefined
             ? options.id
             : typeof eventOrExpr === 'function'
-            ? eventOrExpr.name
-            : eventOrExpr.type
+              ? eventOrExpr.name
+              : eventOrExpr.type
       };
       const args: UnifiedArg<TContext, TExpressionEvent> &
         StateMeta<TExpressionEvent> = {

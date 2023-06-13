@@ -1,6 +1,6 @@
 import { defineComponent } from 'vue';
 import { ActorRefFrom, assign, createMachine, TypegenMeta } from 'xstate';
-import { useInterpret, useMachine } from '../src/index.ts';
+import { useInterpret, useMachine } from '../src/index';
 
 describe('useMachine', () => {
   it('should allow to be used with a machine without any missing implementations', () => {
@@ -85,12 +85,12 @@ describe('useMachine', () => {
         // @ts-expect-error
         useMachine(machine, {
           actions: {
-            myAction: () => {}
+            myAction: () => { }
           }
         });
         useMachine(machine, {
           actions: {
-            myAction: () => {}
+            myAction: () => { }
           },
           delays: {
             myDelay: () => 42
@@ -130,7 +130,7 @@ describe('useMachine', () => {
       setup: () => {
         useMachine(machine, {
           actions: {
-            fooAction: () => {}
+            fooAction: () => { }
           },
           delays: {
             barDelay: () => 100
@@ -165,7 +165,7 @@ describe('useMachine', () => {
         useMachine(machine, {
           actions: {
             // it's important to use `event` here somehow to make this a possible source of information for inference
-            fooAction: ({ event: _event }) => {}
+            fooAction: ({ event: _event }) => { }
           }
         });
       }
@@ -197,9 +197,9 @@ describe('useMachine', () => {
         useMachine(machine, {
           actions: {
             fooAction: assign(({ event }) => {
-              ((_accept: 'FOO') => {})(event.type);
+              ((_accept: 'FOO') => { })(event.type);
               // @ts-expect-error
-              ((_accept: "test that this isn't any") => {})(_event.type);
+              ((_accept: "test that this isn't any") => { })(_event.type);
             })
           }
         });
@@ -290,12 +290,12 @@ describe('useInterpret', () => {
         // @ts-expect-error
         useInterpret(machine, {
           actions: {
-            myAction: () => {}
+            myAction: () => { }
           }
         });
         useInterpret(machine, {
           actions: {
-            myAction: () => {}
+            myAction: () => { }
           },
           delays: {
             myDelay: () => 42
@@ -335,7 +335,7 @@ describe('useInterpret', () => {
       setup: () => {
         useInterpret(machine, {
           actions: {
-            fooAction: () => {}
+            fooAction: () => { }
           },
           delays: {
             barDelay: () => 100
@@ -371,7 +371,7 @@ describe('useInterpret', () => {
           actions: {
             // it's important to use `event` here somehow to make this a possible source of information for inference
             // TODO: is it though?
-            fooAction: () => {}
+            fooAction: () => { }
           }
         });
       }
@@ -403,9 +403,9 @@ describe('useInterpret', () => {
         useInterpret(machine, {
           actions: {
             fooAction: assign(({ event }) => {
-              ((_accept: 'FOO') => {})(event.type);
+              ((_accept: 'FOO') => { })(event.type);
               // @ts-expect-error
-              ((_accept: "test that this isn't any") => {})(event.type);
+              ((_accept: "test that this isn't any") => { })(event.type);
             })
           }
         });
@@ -475,14 +475,14 @@ describe('useInterpret', () => {
       types: { typegen: {} as TypesMeta }
     });
 
-    function useMyActor(_actor: ActorRefFrom<typeof machine>) {}
+    function useMyActor(_actor: ActorRefFrom<typeof machine>) { }
 
     defineComponent({
       setup() {
         const service = useInterpret(
           machine.provide({
             actions: {
-              someAction: () => {}
+              someAction: () => { }
             }
           })
         );
@@ -506,14 +506,14 @@ describe('useInterpret', () => {
       types: { typegen: {} as TypesMeta }
     });
 
-    function useMyActor(_actor: ActorRefFrom<typeof machine>) {}
+    function useMyActor(_actor: ActorRefFrom<typeof machine>) { }
 
     defineComponent({
       setup() {
         const service = useInterpret(
           machine.provide({
             actions: {
-              someAction: () => {}
+              someAction: () => { }
             }
           })
         );

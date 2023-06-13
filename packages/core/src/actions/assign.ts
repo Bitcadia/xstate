@@ -8,12 +8,12 @@ import type {
   AssignMeta,
   InvokeActionObject,
   LowInfer
-} from '../types.ts';
-import * as actionTypes from '../actionTypes.ts';
-import { createDynamicAction } from '../../actions/dynamicAction.ts';
-import { isFunction } from '../utils.ts';
-import { createSpawner } from '../spawn.ts';
-import { cloneState } from '../State.ts';
+} from '../types';
+import * as actionTypes from '../actionTypes';
+import { createDynamicAction } from '../../actions/dynamicAction';
+import { isFunction } from '../utils';
+import { createSpawner } from '../spawn';
+import { cloneState } from '../State';
 
 /**
  * Updates the current context of the machine.

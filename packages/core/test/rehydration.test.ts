@@ -1,4 +1,4 @@
-import { createMachine, interpret } from '../src/index.ts';
+import { createMachine, interpret } from '../src/index';
 
 describe('rehydration', () => {
   describe('using persisted state', () => {
@@ -49,7 +49,7 @@ describe('rehydration', () => {
       const machine = createMachine({
         on: {
           FOO: {
-            actions: () => {}
+            actions: () => { }
           }
         }
       });

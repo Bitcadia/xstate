@@ -1,4 +1,4 @@
-import { createMachine } from '../src/index.ts';
+import { createMachine } from '../src/index';
 
 describe('invalid or resolved states', () => {
   it('should resolve a String state', () => {

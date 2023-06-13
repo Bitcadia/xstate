@@ -1,13 +1,13 @@
 import { interval, of } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { escalate, forwardTo, raise, sendTo } from '../src/actions.ts';
+import { escalate, forwardTo, raise, sendTo } from '../src/actions';
 import {
   fromCallback,
   fromEventObservable,
   fromObservable,
   fromPromise,
   fromTransition
-} from '../src/actors/index.ts';
+} from '../src/actors/index';
 import {
   ActorLogic,
   ActorContext,
@@ -18,7 +18,7 @@ import {
   createMachine,
   interpret,
   sendParent
-} from '../src/index.ts';
+} from '../src/index';
 
 const user = { name: 'David' };
 
@@ -1739,7 +1739,7 @@ describe('invoke', () => {
           },
           waiting: {
             invoke: {
-              src: fromCallback(() => {})
+              src: fromCallback(() => { })
             }
           }
         }

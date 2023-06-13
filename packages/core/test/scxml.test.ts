@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as pkgUp from 'pkg-up';
 import { SimulatedClock } from '../src/SimulatedClock';
-import { AnyState, AnyStateMachine, interpret } from '../src/index.ts';
+import { AnyState, AnyStateMachine, interpret } from '../src/index';
 import { toMachine } from '../src/scxml';
 import { getStateNodes } from '../src/stateUtils';
 
@@ -449,7 +449,7 @@ describe('scxml', () => {
 
       const scxmlSource =
         overrides[testGroupName] &&
-        overrides[testGroupName].indexOf(testName) !== -1
+          overrides[testGroupName].indexOf(testName) !== -1
           ? `./fixtures/scxml/${testGroupName}/${testName}.scxml`
           : `${TEST_FRAMEWORK}/test/${testGroupName}/${testName}.scxml`;
       const scxmlDefinition = fs.readFileSync(

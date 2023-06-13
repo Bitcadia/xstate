@@ -1,5 +1,5 @@
-import { createMachine, interpret } from '../src/index.ts';
-import { trackEntries } from './utils.ts';
+import { createMachine, interpret } from '../src/index';
+import { trackEntries } from './utils';
 
 describe('deep transitions', () => {
   describe('exiting super/substates', () => {

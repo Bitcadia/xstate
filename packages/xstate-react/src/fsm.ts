@@ -11,7 +11,7 @@ import {
 import { useCallback, useEffect, useRef, useState } from 'react';
 import useIsomorphicLayoutEffect from 'use-isomorphic-layout-effect';
 import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/shim/with-selector';
-import useConstant from './useConstant.ts';
+import useConstant from './useConstant';
 
 function identity<T>(a: T): T {
   return a;
@@ -29,7 +29,7 @@ export function useMachine<TMachine extends StateMachine.AnyMachine>(
     if (stateMachine !== initialMachine) {
       console.warn(
         'Machine given to `useMachine` has changed between renders. This is not supported and might lead to unexpected results.\n' +
-          'Please make sure that you pass the same Machine as argument each time.'
+        'Please make sure that you pass the same Machine as argument each time.'
       );
     }
   }

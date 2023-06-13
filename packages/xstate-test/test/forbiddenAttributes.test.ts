@@ -1,5 +1,5 @@
 import { createMachine, raise } from 'xstate';
-import { createTestModel } from '../src/index.ts';
+import { createTestModel } from '../src/index';
 
 describe('Forbidden attributes', () => {
   it('Should not let you declare invocations on your test machine', () => {
@@ -18,7 +18,7 @@ describe('Forbidden attributes', () => {
     const machine = createMachine({
       after: {
         5000: {
-          actions: () => {}
+          actions: () => { }
         }
       }
     });

@@ -9,7 +9,7 @@ import {
   SimulatedClock
 } from 'xstate';
 import { toMachine } from '../src/scxml';
-import { toSCXML, transitionToSCXML } from '../src/index.ts';
+import { toSCXML, transitionToSCXML } from '../src/index';
 
 interface SCIONTest {
   initialConfiguration: string[];
@@ -253,8 +253,7 @@ xdescribe('transition to SCXML', () => {
 
     expect(scxml).toEqual(
       xml2js(
-        `<transition event="SOME_EVENT" target="next" type="internal" cond="${
-          scxml.attributes!.cond
+        `<transition event="SOME_EVENT" target="next" type="internal" cond="${scxml.attributes!.cond
         }" />`
       ).elements[0]
     );

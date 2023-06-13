@@ -1,7 +1,7 @@
-import { createDynamicAction } from '../../actions/dynamicAction.ts';
-import { cloneState } from '../State.ts';
-import { stop as stopActionType } from '../actionTypes.ts';
-import { ActorStatus } from '../interpreter.ts';
+import { createDynamicAction } from '../../actions/dynamicAction';
+import { cloneState } from '../State';
+import { stop as stopActionType } from '../actionTypes';
+import { ActorStatus } from '../interpreter';
 import {
   ActorRef,
   AnyActorContext,
@@ -11,8 +11,8 @@ import {
   Expr,
   MachineContext,
   StopActionObject
-} from '../types.ts';
-import { isFunction } from '../utils.ts';
+} from '../types';
+import { isFunction } from '../utils';
 
 /**
  * Stops an actor.

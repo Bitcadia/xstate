@@ -8,19 +8,19 @@ import {
   Subscribable,
   Observer,
   AnyActorRef
-} from '../src/index.ts';
-import { sendParent, doneInvoke, forwardTo, error } from '../src/actions.ts';
+} from '../src/index';
+import { sendParent, doneInvoke, forwardTo, error } from '../src/actions';
 import { raise } from '../src/actions/raise';
 import { assign } from '../src/actions/assign';
 import { sendTo } from '../src/actions/send';
 import { EMPTY, interval, of } from 'rxjs';
-import { fromTransition } from '../src/actors/transition.ts';
+import { fromTransition } from '../src/actors/transition';
 import {
   fromObservable,
   fromEventObservable
-} from '../src/actors/observable.ts';
-import { fromPromise } from '../src/actors/promise.ts';
-import { fromCallback } from '../src/actors/callback.ts';
+} from '../src/actors/observable';
+import { fromPromise } from '../src/actors/promise';
+import { fromCallback } from '../src/actors/callback';
 import { map } from 'rxjs/operators';
 
 describe('spawning machines', () => {
@@ -30,16 +30,16 @@ describe('spawning machines', () => {
 
   type TodoEvent =
     | {
-        type: 'ADD';
-        id: number;
-      }
+      type: 'ADD';
+      id: number;
+    }
     | {
-        type: 'SET_COMPLETE';
-        id: number;
-      }
+      type: 'SET_COMPLETE';
+      id: number;
+    }
     | {
-        type: 'TODO_COMPLETED';
-      };
+      type: 'TODO_COMPLETED';
+    };
 
   // Adaptation: https://github.com/p-org/P/wiki/PingPong-program
   type PingPongEvent =
@@ -1146,7 +1146,7 @@ describe('actors', () => {
       subscribe(observer) {
         (observer as Observer<any>).complete?.();
 
-        return { unsubscribe: () => {} };
+        return { unsubscribe: () => { } };
       }
     });
 

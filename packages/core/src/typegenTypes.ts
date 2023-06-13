@@ -9,7 +9,7 @@ import {
   ActorMap,
   Cast,
   ParameterizedObject
-} from './types.ts';
+} from './types';
 
 export interface TypegenDisabled {
   '@@xstate/typegen': false;
@@ -109,12 +109,12 @@ export type AreAllImplementationsAssumedToBeProvided<
   ? true
   : TResolvedTypesMeta extends TypegenEnabled
   ? IsNever<
-      Values<{
-        [K in keyof TMissingImplementations]: TMissingImplementations[K];
-      }>
-    > extends true
-    ? true
-    : false
+    Values<{
+      [K in keyof TMissingImplementations]: TMissingImplementations[K];
+    }>
+  > extends true
+  ? true
+  : false
   : true;
 
 export type MissingImplementationsError<
@@ -152,8 +152,8 @@ type GenerateActorEvent<
   TActorMap extends ActorMap
 > = TEventType extends any
   ? {
-      type: TEventType;
-    } & Prop<TActorMap, TActorName>
+    type: TEventType;
+  } & Prop<TActorMap, TActorName>
   : never;
 
 type GenerateActorEvents<
@@ -162,15 +162,15 @@ type GenerateActorEvents<
 > = string extends keyof TActorMap
   ? never
   : Cast<
-      {
-        [K in keyof TInvokeSrcNameMap]: GenerateActorEvent<
-          K,
-          TInvokeSrcNameMap[K],
-          TActorMap
-        >;
-      }[keyof TInvokeSrcNameMap],
-      EventObject
-    >;
+    {
+      [K in keyof TInvokeSrcNameMap]: GenerateActorEvent<
+        K,
+        TInvokeSrcNameMap[K],
+        TActorMap
+      >;
+    }[keyof TInvokeSrcNameMap],
+    EventObject
+  >;
 
 // we don't even have to do that much here, technically, because `T & unknown` is equivalent to `T`
 // however, this doesn't display nicely in IDE tooltips, so let's fix this
@@ -205,20 +205,20 @@ export interface ResolveTypegenMeta<
       >;
     };
     disabled: TypegenDisabled &
-      AllImplementationsProvided &
-      AllowAllEvents & {
-        indexedActions: IndexByType<TAction>;
-        indexedEvents: Record<string, TEvent> & {
-          __XSTATE_ALLOW_ANY_INVOKE_OUTPUT_HACK__: { output: any };
-        };
-        invokeSrcNameMap: Record<
-          string,
-          '__XSTATE_ALLOW_ANY_INVOKE_OUTPUT_HACK__'
-        >;
+    AllImplementationsProvided &
+    AllowAllEvents & {
+      indexedActions: IndexByType<TAction>;
+      indexedEvents: Record<string, TEvent> & {
+        __XSTATE_ALLOW_ANY_INVOKE_OUTPUT_HACK__: { output: any };
       };
+      invokeSrcNameMap: Record<
+        string,
+        '__XSTATE_ALLOW_ANY_INVOKE_OUTPUT_HACK__'
+      >;
+    };
   }[IsNever<TTypesMeta> extends true
-    ? 'disabled'
-    : TTypesMeta extends TypegenEnabled
-    ? 'enabled'
-    : 'disabled'];
+  ? 'disabled'
+  : TTypesMeta extends TypegenEnabled
+  ? 'enabled'
+  : 'disabled'];
 }

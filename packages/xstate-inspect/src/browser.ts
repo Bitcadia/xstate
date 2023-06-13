@@ -8,8 +8,8 @@ import {
 } from 'xstate';
 import { XStateDevInterface } from 'xstate/dev';
 import { toActorRef } from 'xstate/actors';
-import { createInspectMachine, InspectMachineEvent } from './inspectMachine.ts';
-import { stringifyMachine, stringifyState } from './serialize.ts';
+import { createInspectMachine, InspectMachineEvent } from './inspectMachine';
+import { stringifyMachine, stringifyState } from './serialize';
 import type {
   Inspector,
   InspectorOptions,
@@ -18,13 +18,13 @@ import type {
   ServiceListener,
   WebSocketReceiverOptions,
   WindowReceiverOptions
-} from './types.ts';
+} from './types';
 import {
   getLazy,
   isReceiverEvent,
   parseReceiverEvent,
   stringify
-} from './utils.ts';
+} from './utils';
 
 export const serviceMap = new Map<string, AnyInterpreter>();
 
