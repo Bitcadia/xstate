@@ -1,6 +1,6 @@
 import type { Store } from 'solid-js/store';
 import { createStore } from 'solid-js/store';
-import { deepClone, isWrappable } from './deepClone.ts';
+import { deepClone, isWrappable } from './deepClone';
 import { batch } from 'solid-js';
 
 const resolvePath = (path: any[], obj = {}) => {

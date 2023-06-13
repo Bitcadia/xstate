@@ -1,4 +1,4 @@
-// import { createMachine } from '../src/index.ts';
+// import { createMachine } from '../src/index';
 
 // // this stopped working in TS 5.0
 // // https://github.com/microsoft/TypeScript/issues/53436

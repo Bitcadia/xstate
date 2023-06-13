@@ -5,9 +5,9 @@ import {
   InterpreterStatus,
   StateMachine,
   Typestate
-} from './types.ts';
+} from './types';
 
-export * from './types.ts';
+export * from './types';
 
 const INIT_EVENT: InitEvent = { type: 'xstate.init' };
 const ASSIGN_ACTION: StateMachine.AssignAction = 'xstate.assign';
@@ -41,14 +41,14 @@ function toActionObject<TContext extends object, TEvent extends EventObject>(
       : action;
   return typeof action === 'string'
     ? {
-        type: action
-      }
+      type: action
+    }
     : typeof action === 'function'
-    ? {
+      ? {
         type: action.name,
         exec: action
       }
-    : action;
+      : action;
 }
 
 function createMatcher(value: string) {
@@ -174,8 +174,8 @@ export function createMachine<
             TContext,
             TEvent
           > = typeof transition === 'string'
-            ? { target: transition }
-            : transition;
+              ? { target: transition }
+              : transition;
 
           const isTargetless = target === undefined;
 
@@ -184,8 +184,7 @@ export function createMachine<
 
           if (isDevelopment && !nextStateConfig) {
             throw new Error(
-              `State '${nextStateValue}' not found on machine ${
-                fsmConfig.id ?? ''
+              `State '${nextStateValue}' not found on machine ${fsmConfig.id ?? ''
               }`
             );
           }
@@ -195,8 +194,8 @@ export function createMachine<
               isTargetless
                 ? toArray(actions)
                 : ([] as any[])
-                    .concat(stateConfig.exit, actions, nextStateConfig.entry)
-                    .filter((a) => a)
+                  .concat(stateConfig.exit, actions, nextStateConfig.entry)
+                  .filter((a) => a)
             ).map<StateMachine.ActionObject<TContext, TEvent>>((action) =>
               toActionObject(action, (machine as any)._options.actions)
             );
@@ -285,10 +284,8 @@ export function interpret<
         if (isDevelopment) {
           if (!(state.value in machine.config.states)) {
             throw new Error(
-              `Cannot start service in state '${
-                state.value
-              }'. The state is not found on machine${
-                machine.config.id ? ` '${machine.config.id}'` : ''
+              `Cannot start service in state '${state.value
+              }'. The state is not found on machine${machine.config.id ? ` '${machine.config.id}'` : ''
               }.`
             );
           }

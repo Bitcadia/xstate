@@ -13,8 +13,8 @@ import {
   screen,
   waitFor as testWaitFor
 } from '@testing-library/react';
-import { useActorRef, useMachine, useSelector } from '../src/index.ts';
-import { describeEachReactMode } from './utils.tsx';
+import { useActorRef, useMachine, useSelector } from '../src/index';
+import { describeEachReactMode } from './utilsx';
 
 const originalConsoleWarn = console.warn;
 

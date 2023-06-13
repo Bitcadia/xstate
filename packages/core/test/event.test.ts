@@ -1,4 +1,4 @@
-import { createMachine, interpret, assign, AnyActorRef } from '../src/index.ts';
+import { createMachine, interpret, assign, AnyActorRef } from '../src/index';
 import { sendTo } from '../src/actions/send';
 
 describe('events', () => {

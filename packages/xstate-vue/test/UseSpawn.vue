@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { useActor, useSpawn } from '../src/index.ts';
+import { useActor, useSpawn } from '../src/index';
 import { fromTransition } from 'xstate/actors';
 import { defineComponent } from 'vue';
 

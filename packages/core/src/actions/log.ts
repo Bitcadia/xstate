@@ -3,10 +3,10 @@ import {
   LogExpr,
   MachineContext,
   LogActionObject
-} from '../types.ts';
-import { log as logActionType } from '../actionTypes.ts';
-import { createDynamicAction } from '../../actions/dynamicAction.ts';
-import { BaseDynamicActionObject, DynamicLogAction } from '../index.ts';
+} from '../types';
+import { log as logActionType } from '../actionTypes';
+import { createDynamicAction } from '../../actions/dynamicAction';
+import { BaseDynamicActionObject, DynamicLogAction } from '../index';
 
 const defaultLogExpr = <TContext, TEvent extends EventObject>({
   context,
@@ -48,11 +48,11 @@ export function log<
       const resolvedValue =
         typeof expr === 'function'
           ? expr({
-              context: state.context,
-              event,
-              self: actorContext?.self ?? ({} as any),
-              system: actorContext?.system
-            })
+            context: state.context,
+            event,
+            self: actorContext?.self ?? ({} as any),
+            system: actorContext?.system
+          })
           : expr;
       return [
         state,

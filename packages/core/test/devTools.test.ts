@@ -1,4 +1,4 @@
-import { interpret, DevToolsAdapter, createMachine } from '../src/index.ts';
+import { interpret, DevToolsAdapter, createMachine } from '../src/index';
 
 describe('devTools', () => {
   it('should register services with a custom devTools adapter', (done) => {

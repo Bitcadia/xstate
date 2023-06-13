@@ -1,6 +1,6 @@
 import { render } from '@testing-library/react';
 import { ActorRefFrom, assign, createMachine } from 'xstate';
-import { useMachine, useSelector } from '../src/index.ts';
+import { useMachine, useSelector } from '../src/index';
 
 describe('useMachine', () => {
   interface YesNoContext {

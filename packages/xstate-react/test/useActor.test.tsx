@@ -15,8 +15,8 @@ import {
   StateFrom
 } from 'xstate';
 import { fromCallback, fromPromise } from 'xstate/actors';
-import { useActor, useSelector } from '../src/index.ts';
-import { describeEachReactMode } from './utils.tsx';
+import { useActor, useSelector } from '../src/index';
+import { describeEachReactMode } from './utilsx';
 
 afterEach(() => {
   jest.useRealTimers();
@@ -80,32 +80,32 @@ describeEachReactMode('useActor (%s)', ({ suiteKey, render }) => {
     },
     persistedState
   }) => {
-    const [current, send] = useActor(
-      fetchMachine.provide({
-        actors: {
-          fetchData: fromPromise(onFetch)
+      const [current, send] = useActor(
+        fetchMachine.provide({
+          actors: {
+            fetchData: fromPromise(onFetch)
+          }
+        }),
+        {
+          state: persistedState
         }
-      }),
-      {
-        state: persistedState
-      }
-    );
+      );
 
-    switch (current.value) {
-      case 'idle':
-        return <button onClick={(_) => send({ type: 'FETCH' })}>Fetch</button>;
-      case 'loading':
-        return <div>Loading...</div>;
-      case 'success':
-        return (
-          <div>
-            Success! Data: <div data-testid="data">{current.context.data}</div>
-          </div>
-        );
-      default:
-        return null;
-    }
-  };
+      switch (current.value) {
+        case 'idle':
+          return <button onClick={(_) => send({ type: 'FETCH' })}>Fetch</button>;
+        case 'loading':
+          return <div>Loading...</div>;
+        case 'success':
+          return (
+            <div>
+              Success! Data: <div data-testid="data">{current.context.data}</div>
+            </div>
+          );
+        default:
+          return null;
+      }
+    };
 
   it('should work with the useMachine hook', async () => {
     render(<Fetcher onFetch={() => new Promise((res) => res('fake data'))} />);
@@ -441,9 +441,9 @@ describeEachReactMode('useActor (%s)', ({ suiteKey, render }) => {
     expect(rerenders).toBe(
       suiteKey === 'strict'
         ? // it's rendered twice for the each state
-          // and the machine gets currently completely restarted in a double-invoked strict effect
-          // so we get a new state from that restarted machine (and thus 2 additional strict renders) and we end up with 4
-          4
+        // and the machine gets currently completely restarted in a double-invoked strict effect
+        // so we get a new state from that restarted machine (and thus 2 additional strict renders) and we end up with 4
+        4
         : 1
     );
   });
@@ -499,10 +499,10 @@ describeEachReactMode('useActor (%s)', ({ suiteKey, render }) => {
     expect(effectsFired).toBe(
       suiteKey === 'strict'
         ? // TODO: probably it should be 2 for strict mode cause of the double-invoked strict effects
-          // atm it's 3 cause we the double-invoked effect sees the initial value
-          // but the 3rd call comes from the restarted machine (that happens because of the strict effects)
-          // the second effect with `service.start()` doesn't have a way to change what another effect in the same "effect batch" sees
-          3
+        // atm it's 3 cause we the double-invoked effect sees the initial value
+        // but the 3rd call comes from the restarted machine (that happens because of the strict effects)
+        // the second effect with `service.start()` doesn't have a way to change what another effect in the same "effect batch" sees
+        3
         : 1
     );
 
@@ -966,8 +966,8 @@ describeEachReactMode('useActor (%s)', ({ suiteKey, render }) => {
     expect(spy).toHaveBeenCalledTimes(
       suiteKey === 'strict'
         ? // TODO: probably it should be 2 for strict mode cause of the double-invoked strict effects
-          // but we don't rehydrate child actors right now, we just recreate the initial state and that leads to an extra render with strict effects
-          3
+        // but we don't rehydrate child actors right now, we just recreate the initial state and that leads to an extra render with strict effects
+        3
         : 1
     );
   });

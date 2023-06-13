@@ -9,7 +9,7 @@ import {
   InterpreterStatus,
   SnapshotFrom
 } from 'xstate';
-import { useIdleInterpreter } from './useActorRef.ts';
+import { useIdleInterpreter } from './useActorRef';
 import { isActorRef } from 'xstate/actors';
 
 function identity<T>(a: T): T {

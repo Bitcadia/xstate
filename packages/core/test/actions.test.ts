@@ -1,4 +1,4 @@
-import { ActorRef } from '../src/index.ts';
+import { ActorRef } from '../src/index';
 import {
   cancel,
   choose,
@@ -8,16 +8,16 @@ import {
   sendParent,
   sendTo,
   stop
-} from '../src/actions.ts';
+} from '../src/actions';
 import {
   ActorRefFrom,
   assign,
   createMachine,
   forwardTo,
   interpret
-} from '../src/index.ts';
-import { fromCallback } from '../src/actors/callback.ts';
-import { trackEntries } from './utils.ts';
+} from '../src/index';
+import { fromCallback } from '../src/actors/callback';
+import { trackEntries } from './utils';
 
 const originalConsoleLog = console.log;
 
@@ -1291,7 +1291,7 @@ describe('entry/exit actions', () => {
         initial: 'one',
         on: {
           WHATEVER: {
-            actions: () => {}
+            actions: () => { }
           }
         },
         states: {
@@ -1445,7 +1445,7 @@ describe('entry/exit actions', () => {
             on: {
               EV: {
                 // just a noop action to ensure that a transition is selected when we send an event
-                actions: () => {}
+                actions: () => { }
               }
             }
           }
@@ -1476,7 +1476,7 @@ describe('entry/exit actions', () => {
                 on: {
                   EV: {
                     // just a noop action to ensure that a transition is selected when we send an event
-                    actions: () => {}
+                    actions: () => { }
                   }
                 }
               }
@@ -1527,7 +1527,7 @@ describe('entry/exit actions', () => {
                 on: {
                   EV: {
                     // just a noop action to ensure that a transition is selected when we send an event
-                    actions: () => {}
+                    actions: () => { }
                   }
                 }
               }
@@ -1566,7 +1566,7 @@ describe('entry/exit actions', () => {
                 on: {
                   EV: {
                     // just a noop action to ensure that a transition is selected when we send an event
-                    actions: () => {}
+                    actions: () => { }
                   }
                 }
               }
@@ -1579,7 +1579,7 @@ describe('entry/exit actions', () => {
                 on: {
                   EV: {
                     // just a noop action to ensure that a transition is selected when we send an event
-                    actions: () => {}
+                    actions: () => { }
                   }
                 }
               }
@@ -1967,7 +1967,7 @@ describe('entry/exit actions', () => {
                     // immediately stop *while* the `INITIALIZE_SYNC_SEQUENCE` is still being processed
                     service.stop();
                   },
-                  () => {}
+                  () => { }
                 ]
               }
             }
@@ -2151,7 +2151,7 @@ describe('actions config', () => {
     count: number;
   }
 
-  const definedAction = () => {};
+  const definedAction = () => { };
 
   it('should reference actions defined in actions parameter of machine options (entry actions)', () => {
     const spy = jest.fn();
@@ -2883,7 +2883,7 @@ describe('choose', () => {
 describe('sendParent', () => {
   // https://github.com/statelyai/xstate/issues/711
   it('TS: should compile for any event', () => {
-    interface ChildContext {}
+    interface ChildContext { }
     interface ChildEvent {
       type: 'CHILD';
     }
@@ -2920,9 +2920,9 @@ describe('sendTo', () => {
 
     const parentMachine = createMachine({
       context: ({ spawn }) =>
-        ({
-          child: spawn(childMachine)
-        } as { child: ActorRefFrom<typeof childMachine> }),
+      ({
+        child: spawn(childMachine)
+      } as { child: ActorRefFrom<typeof childMachine> }),
       entry: sendTo(({ context }) => context.child, { type: 'EVENT' })
     });
 
@@ -3074,7 +3074,7 @@ describe('sendTo', () => {
     const machine = createMachine({
       invoke: {
         id: 'child',
-        src: fromCallback(() => {})
+        src: fromCallback(() => { })
       },
       entry: sendTo('child', 'a string')
     });
@@ -3231,11 +3231,11 @@ describe('raise', () => {
   it('should be possible to access context in the event expression', () => {
     type MachineEvent =
       | {
-          type: 'RAISED';
-        }
+        type: 'RAISED';
+      }
       | {
-          type: 'NEXT';
-        };
+        type: 'NEXT';
+      };
     interface MachineContext {
       eventType: MachineEvent['type'];
     }

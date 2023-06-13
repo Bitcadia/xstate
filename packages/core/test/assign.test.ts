@@ -1,4 +1,4 @@
-import { assign, createMachine, interpret } from '../src/index.ts';
+import { assign, createMachine, interpret } from '../src/index';
 
 interface CounterContext {
   count: number;
@@ -327,7 +327,7 @@ describe('assign meta', () => {
 
   it(
     'a parameterized action that resolves to assign() should be provided the original' +
-      'action in the action meta',
+    'action in the action meta',
     (done) => {
       const machine = createMachine(
         {

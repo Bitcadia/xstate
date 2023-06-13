@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { useMachine } from '../src/index.ts';
+import { useMachine } from '../src/index';
 import { createMachine } from 'xstate';
 import { defineComponent } from 'vue';
 

@@ -1,5 +1,5 @@
 import { createMachine, interpret } from 'xstate';
-import { assign, createUpdater, ImmerUpdateEvent } from '../src/index.ts';
+import { assign, createUpdater, ImmerUpdateEvent } from '../src/index';
 
 describe('@xstate/immer', () => {
   it('should update the context without modifying previous contexts', () => {
@@ -168,8 +168,8 @@ describe('@xstate/immer', () => {
       | NameUpdateEvent
       | AgeUpdateEvent
       | {
-          type: 'SUBMIT';
-        };
+        type: 'SUBMIT';
+      };
 
     const formMachine = createMachine<FormContext, FormEvent>({
       initial: 'editing',

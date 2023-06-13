@@ -1,6 +1,6 @@
 import { AnyState, AnyStateMachine } from 'xstate';
-import { Replacer } from './types.ts';
-import { stringify } from './utils.ts';
+import { Replacer } from './types';
+import { stringify } from './utils';
 
 export function selectivelyStringify<T extends object>(
   value: T,

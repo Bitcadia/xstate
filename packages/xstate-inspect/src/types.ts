@@ -6,7 +6,7 @@ import type {
   StateConfig
 } from 'xstate';
 import { XStateDevInterface } from 'xstate/dev';
-import { InspectMachineEvent } from './inspectMachine.ts';
+import { InspectMachineEvent } from './inspectMachine';
 
 export type MaybeLazy<T> = T | (() => T);
 
@@ -41,38 +41,38 @@ export type ReceiverCommand =
  */
 export type ReceiverEvent =
   | {
-      type: 'service.register';
-      machine: string;
-      state: string;
-      id: string;
-      sessionId: string;
-      parent?: string;
-      source?: string;
-    }
+    type: 'service.register';
+    machine: string;
+    state: string;
+    id: string;
+    sessionId: string;
+    parent?: string;
+    source?: string;
+  }
   | { type: 'service.stop'; sessionId: string }
   | {
-      type: 'service.state';
-      state: string;
-      sessionId: string;
-    }
+    type: 'service.state';
+    state: string;
+    sessionId: string;
+  }
   | { type: 'service.event'; event: string; sessionId: string };
 
 export type ParsedReceiverEvent =
   | {
-      type: 'service.register';
-      machine: AnyStateMachine;
-      state: StateConfig<any, any>;
-      id: string;
-      sessionId: string;
-      parent?: string;
-      source?: string;
-    }
+    type: 'service.register';
+    machine: AnyStateMachine;
+    state: StateConfig<any, any>;
+    id: string;
+    sessionId: string;
+    parent?: string;
+    source?: string;
+  }
   | { type: 'service.stop'; sessionId: string }
   | {
-      type: 'service.state';
-      state: StateConfig<any, any>;
-      sessionId: string;
-    }
+    type: 'service.state';
+    state: StateConfig<any, any>;
+    sessionId: string;
+  }
   | { type: 'service.event'; event: string; sessionId: string };
 
 export type InspectReceiver = ActorRef<ReceiverCommand, ParsedReceiverEvent>;

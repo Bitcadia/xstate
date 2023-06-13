@@ -1,7 +1,7 @@
 <script lang="ts">
   export let persistedState: AnyState | undefined = undefined;
 
-  import { useMachine } from '../src/index.ts';
+  import { useMachine } from '../src/index';
   import UseMachineNonPersistentSubcriptionChild from './UseMachineNonPersistentSubcriptionChild.svelte';
   import type { AnyState } from 'xstate';
   import { assign, createMachine } from 'xstate';

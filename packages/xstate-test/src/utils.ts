@@ -1,6 +1,6 @@
 import { SerializationConfig, StatePath } from '@xstate/graph';
 import { AnyState, MachineContext } from 'xstate';
-import { TestMeta, TestPathResult } from './types.ts';
+import { TestMeta, TestPathResult } from './types';
 
 interface TestResultStringOptions extends SerializationConfig<any, any> {
   formatColor: (color: string, string: string) => string;
@@ -43,28 +43,25 @@ export function formatPathTestResult(
         );
         const eventString = serializeEvent(s.step.event);
 
-        const stateResult = `\tState: ${
-          hasFailed
+        const stateResult = `\tState: ${hasFailed
             ? formatColor('gray', stateString)
             : s.state.error
-            ? ((hasFailed = true), formatColor('redBright', stateString))
-            : formatColor('greenBright', stateString)
-        }`;
-        const eventResult = `\tEvent: ${
-          hasFailed
+              ? ((hasFailed = true), formatColor('redBright', stateString))
+              : formatColor('greenBright', stateString)
+          }`;
+        const eventResult = `\tEvent: ${hasFailed
             ? formatColor('gray', eventString)
             : s.event.error
-            ? ((hasFailed = true), formatColor('red', eventString))
-            : formatColor('green', eventString)
-        }`;
+              ? ((hasFailed = true), formatColor('red', eventString))
+              : formatColor('green', eventString)
+          }`;
 
         return [stateResult, eventResult].join('\n');
       })
       .concat(
-        `\tState: ${
-          hasFailed
-            ? formatColor('gray', targetStateString)
-            : testPathResult.state.error
+        `\tState: ${hasFailed
+          ? formatColor('gray', targetStateString)
+          : testPathResult.state.error
             ? formatColor('red', targetStateString)
             : formatColor('green', targetStateString)
         }`

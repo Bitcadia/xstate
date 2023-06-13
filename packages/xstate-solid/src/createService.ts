@@ -1,6 +1,6 @@
 import type { AnyStateMachine, InterpreterFrom } from 'xstate';
 import { interpret } from 'xstate';
-import type { RestParams } from './types.ts';
+import type { RestParams } from './types';
 import { onCleanup } from 'solid-js';
 import { isServer } from 'solid-js/web';
 
