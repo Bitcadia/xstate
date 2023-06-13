@@ -1,5 +1,5 @@
-import { interpret, createMachine, assign } from '../src/index.ts';
-import { State } from '../src/State.ts';
+import { interpret, createMachine, assign } from '../src/index';
+import { State } from '../src/State';
 
 const pedestrianStates = {
   initial: 'walk',

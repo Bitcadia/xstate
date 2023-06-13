@@ -1,5 +1,5 @@
-import { createMachine, interpret } from '../src/index.ts';
-import { stateIn } from '../src/guards.ts';
+import { createMachine, interpret } from '../src/index';
+import { stateIn } from '../src/guards';
 
 describe('transition "in" check', () => {
   it('should transition if string state path matches current state value', () => {

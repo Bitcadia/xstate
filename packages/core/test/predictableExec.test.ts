@@ -4,10 +4,10 @@ import {
   createMachine,
   interpret,
   sendTo
-} from '../src/index.ts';
-import { raise, sendParent, stop } from '../src/actions.ts';
-import { fromCallback } from '../src/actors/index.ts';
-import { fromPromise } from '../src/actors/index.ts';
+} from '../src/index';
+import { raise, sendParent, stop } from '../src/actions';
+import { fromCallback } from '../src/actors/index';
+import { fromPromise } from '../src/actors/index';
 
 describe('predictableExec', () => {
   it('should call mixed custom and builtin actions in the definitions order', () => {
@@ -179,7 +179,7 @@ describe('predictableExec', () => {
         b: {
           invoke: {
             id: 'myChild',
-            src: fromCallback(() => {})
+            src: fromCallback(() => { })
           }
         }
       }
@@ -204,7 +204,7 @@ describe('predictableExec', () => {
         b: {
           invoke: {
             id: 'myChild',
-            src: fromCallback(() => {})
+            src: fromCallback(() => { })
           },
           on: {
             NEXT: 'c'
@@ -715,7 +715,7 @@ describe('predictableExec', () => {
               onReceive((event) => {
                 received = event;
               });
-              return () => {};
+              return () => { };
             })
           }
         }

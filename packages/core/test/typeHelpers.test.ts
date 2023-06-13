@@ -10,7 +10,7 @@ import {
   ActorLogic,
   ActorRefFrom,
   TagsFrom
-} from '../src/index.ts';
+} from '../src/index';
 import { TypegenMeta } from '../src/typegenTypes';
 
 describe('ContextFrom', () => {
@@ -23,7 +23,7 @@ describe('ContextFrom', () => {
 
     type MachineContext = ContextFrom<typeof machine>;
 
-    const acceptMachineContext = (_event: MachineContext) => {};
+    const acceptMachineContext = (_event: MachineContext) => { };
 
     acceptMachineContext({ counter: 100 });
     acceptMachineContext({
@@ -46,7 +46,7 @@ describe('ContextFrom', () => {
 
     type MachineContext = ContextFrom<typeof machine>;
 
-    const acceptMachineContext = (_event: MachineContext) => {};
+    const acceptMachineContext = (_event: MachineContext) => { };
 
     acceptMachineContext({ counter: 100 });
     acceptMachineContext({
@@ -73,7 +73,7 @@ describe('EventFrom', () => {
 
     type MachineEvent = EventFrom<typeof machine>;
 
-    const acceptMachineEvent = (_event: MachineEvent) => {};
+    const acceptMachineEvent = (_event: MachineEvent) => { };
 
     acceptMachineEvent({ type: 'UPDATE_NAME', value: 'test' });
     acceptMachineEvent({ type: 'UPDATE_AGE', value: 12 });
@@ -97,7 +97,7 @@ describe('EventFrom', () => {
 
     type MachineEvent = EventFrom<typeof machine>;
 
-    const acceptMachineEvent = (_event: MachineEvent) => {};
+    const acceptMachineEvent = (_event: MachineEvent) => { };
 
     acceptMachineEvent({ type: 'UPDATE_NAME', value: 'test' });
     acceptMachineEvent({ type: 'UPDATE_AGE', value: 12 });
@@ -122,7 +122,7 @@ describe('EventFrom', () => {
 
     type InterpreterEvent = EventFrom<typeof service>;
 
-    const acceptInterpreterEvent = (_event: InterpreterEvent) => {};
+    const acceptInterpreterEvent = (_event: InterpreterEvent) => { };
 
     acceptInterpreterEvent({ type: 'UPDATE_NAME', value: 'test' });
     acceptInterpreterEvent({ type: 'UPDATE_AGE', value: 12 });
@@ -147,11 +147,11 @@ describe('MachineImplementationsFrom', () => {
 
     const acceptMachineImplementations = (
       _options: MachineImplementationsFrom<typeof machine>
-    ) => {};
+    ) => { };
 
     acceptMachineImplementations({
       actions: {
-        foo: () => {}
+        foo: () => { }
       }
     });
     acceptMachineImplementations({
@@ -162,7 +162,7 @@ describe('MachineImplementationsFrom', () => {
     acceptMachineImplementations({
       actions: {
         foo: assign(({ context }) => {
-          ((_accept: number) => {})(context.count);
+          ((_accept: number) => { })(context.count);
           return {};
         })
       }
@@ -170,7 +170,7 @@ describe('MachineImplementationsFrom', () => {
     acceptMachineImplementations({
       actions: {
         foo: assign(({ event }) => {
-          ((_accept: 'FOO' | 'BAR') => {})(event.type);
+          ((_accept: 'FOO' | 'BAR') => { })(event.type);
           return {};
         })
       }
@@ -203,12 +203,12 @@ describe('MachineImplementationsFrom', () => {
 
     const acceptMachineImplementations = (
       _options: MachineImplementationsFrom<typeof machine>
-    ) => {};
+    ) => { };
 
     acceptMachineImplementations({
       actions: {
         // @ts-expect-error
-        foo: () => {}
+        foo: () => { }
       }
     });
     acceptMachineImplementations({
@@ -217,8 +217,8 @@ describe('MachineImplementationsFrom', () => {
     acceptMachineImplementations({
       actions: {
         myAction: assign(({ context, event }) => {
-          ((_accept: number) => {})(context.count);
-          ((_accept: 'FOO') => {})(event.type);
+          ((_accept: number) => { })(context.count);
+          ((_accept: 'FOO') => { })(event.type);
           return {};
         })
       }
@@ -251,12 +251,12 @@ describe('MachineImplementationsFrom', () => {
 
     const acceptMachineImplementations = (
       _options: MachineImplementationsFrom<typeof machine, true>
-    ) => {};
+    ) => { };
 
     acceptMachineImplementations({
       actions: {
         // @ts-expect-error
-        foo: () => {}
+        foo: () => { }
       }
     });
     acceptMachineImplementations({
@@ -266,8 +266,8 @@ describe('MachineImplementationsFrom', () => {
     acceptMachineImplementations({
       actions: {
         myAction: assign(({ context, event }) => {
-          ((_accept: number) => {})(context.count);
-          ((_accept: 'FOO') => {})(event.type);
+          ((_accept: number) => { })(context.count);
+          ((_accept: 'FOO') => { })(event.type);
           return {};
         })
       }
@@ -289,7 +289,7 @@ describe('StateValueFrom', () => {
       }
     });
 
-    function matches(_value: StateValueFrom<typeof machine>) {}
+    function matches(_value: StateValueFrom<typeof machine>) { }
 
     matches('a');
     matches('b');
@@ -300,7 +300,7 @@ describe('StateValueFrom', () => {
   it('should return any from a typegenless machine', () => {
     const machine = createMachine({});
 
-    function matches(_value: StateValueFrom<typeof machine>) {}
+    function matches(_value: StateValueFrom<typeof machine>) { }
 
     matches('just anything');
   });
@@ -316,7 +316,7 @@ describe('SnapshotFrom', () => {
       })
     );
 
-    function acceptState(_state: SnapshotFrom<typeof service>) {}
+    function acceptState(_state: SnapshotFrom<typeof service>) { }
 
     acceptState(service.getSnapshot());
     // @ts-expect-error
@@ -326,7 +326,7 @@ describe('SnapshotFrom', () => {
   it('should return state from a machine without context', () => {
     const machine = createMachine({});
 
-    function acceptState(_state: SnapshotFrom<typeof machine>) {}
+    function acceptState(_state: SnapshotFrom<typeof machine>) { }
 
     acceptState(interpret(machine).getSnapshot());
     // @ts-expect-error
@@ -340,7 +340,7 @@ describe('SnapshotFrom', () => {
       }
     });
 
-    function acceptState(_state: SnapshotFrom<typeof machine>) {}
+    function acceptState(_state: SnapshotFrom<typeof machine>) { }
 
     acceptState(interpret(machine).getSnapshot());
     // @ts-expect-error
@@ -351,7 +351,7 @@ describe('SnapshotFrom', () => {
 describe('ActorRefFrom', () => {
   it('should return `ActorRef` based on actor logic', () => {
     const logic: ActorLogic<{ type: 'TEST' }> = {
-      transition: () => {},
+      transition: () => { },
       getInitialState: () => undefined
     };
 
@@ -376,7 +376,7 @@ describe('tags', () => {
 
     type Tags = TagsFrom<typeof machine>;
 
-    const acceptTag = (_tag: Tags) => {};
+    const acceptTag = (_tag: Tags) => { };
 
     acceptTag('a');
     acceptTag('b');
@@ -390,7 +390,7 @@ describe('tags', () => {
 
     type Tags = TagsFrom<typeof machine>;
 
-    const acceptTag = (_tag: Tags) => {};
+    const acceptTag = (_tag: Tags) => { };
 
     acceptTag('a');
     acceptTag('b');

@@ -12,7 +12,7 @@ import {
   raise,
   stop,
   log
-} from '../src/index.ts';
+} from '../src/index';
 import { State } from '../src/State';
 import { isObservable } from '../src/utils';
 import { interval, from } from 'rxjs';
@@ -251,11 +251,11 @@ describe('interpreter', () => {
                   context.initialDelay +
                   ('wait' in event
                     ? (
-                        event as Extract<
-                          DelayExpMachineEvents,
-                          { type: 'ACTIVATE' }
-                        >
-                      ).wait
+                      event as Extract<
+                        DelayExpMachineEvents,
+                        { type: 'ACTIVATE' }
+                      >
+                    ).wait
                     : 0)
               }
             ),
@@ -302,12 +302,12 @@ describe('interpreter', () => {
 
       type DelayExpMachineEvents =
         | {
-            type: 'ACTIVATE';
-            wait: number;
-          }
+          type: 'ACTIVATE';
+          wait: number;
+        }
         | {
-            type: 'FINISH';
-          };
+          type: 'FINISH';
+        };
 
       const delayExprMachine = createMachine<
         DelayExprMachineCtx,

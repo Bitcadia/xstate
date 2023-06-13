@@ -1,18 +1,18 @@
 import isDevelopment from '#is-development';
-import { EventObject, InvokeDefinition, MachineContext } from '../types.ts';
-import { invoke as invokeActionType } from '../actionTypes.ts';
-import { isActorRef } from '../actors/index.ts';
-import { createDynamicAction } from '../../actions/dynamicAction.ts';
+import { EventObject, InvokeDefinition, MachineContext } from '../types';
+import { invoke as invokeActionType } from '../actionTypes';
+import { isActorRef } from '../actors/index';
+import { createDynamicAction } from '../../actions/dynamicAction';
 import {
   AnyInterpreter,
   BaseDynamicActionObject,
   DynamicInvokeActionObject,
   InvokeActionObject
-} from '../index.ts';
-import { actionTypes, error } from '../actions.ts';
-import { resolveReferencedActor } from '../utils.ts';
-import { ActorStatus, interpret } from '../interpreter.ts';
-import { cloneState } from '../State.ts';
+} from '../index';
+import { actionTypes, error } from '../actions';
+import { resolveReferencedActor } from '../utils';
+import { ActorStatus, interpret } from '../interpreter';
+import { cloneState } from '../State';
 
 export function invoke<
   TContext extends MachineContext,
@@ -63,10 +63,10 @@ export function invoke<
             input:
               typeof input === 'function'
                 ? input({
-                    context: state.context,
-                    event,
-                    self: actorContext?.self
-                  })
+                  context: state.context,
+                  event,
+                  self: actorContext?.self
+                })
                 : input
           });
 

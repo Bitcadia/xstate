@@ -1,5 +1,5 @@
 import { AnyState, matchesState } from 'xstate';
-import type { CheckSnapshot } from './types.ts';
+import type { CheckSnapshot } from './types';
 
 function isState(state: any): state is AnyState {
   return (
@@ -37,8 +37,8 @@ export const deriveServiceState = <
         prevState && isState(prevState)
           ? prevState.matches
           : function (parentStateValue: any) {
-              return matchesState(parentStateValue, this.value);
-            }
+            return matchesState(parentStateValue, this.value);
+          }
     } as StateReturnType;
   } else {
     return state as StateReturnType;

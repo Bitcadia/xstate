@@ -6,8 +6,8 @@ import {
   AnyEventObject
 } from '../types';
 import { isPromiseLike, isFunction } from '../utils';
-import { doneInvoke, error } from '../actions.ts';
-import { startSignalType, stopSignalType, isSignal } from '../actors/index.ts';
+import { doneInvoke, error } from '../actions';
+import { startSignalType, stopSignalType, isSignal } from '../actors/index';
 
 export interface CallbackInternalState {
   canceled: boolean;

@@ -1,5 +1,5 @@
 import isDevelopment from '#is-development';
-import { AnyInterpreter, DevToolsAdapter } from '../types.ts';
+import { AnyInterpreter, DevToolsAdapter } from '../types';
 
 interface DevInterface {
   services: Set<AnyInterpreter>;

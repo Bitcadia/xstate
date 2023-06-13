@@ -12,14 +12,14 @@ import {
   MachineContext,
   StateValue
 } from 'xstate';
-import { TestModel } from './TestModel.ts';
+import { TestModel } from './TestModel';
 import {
   TestMachineConfig,
   TestMachineOptions,
   TestModelOptions
-} from './types.ts';
-import { flatten, simpleStringify } from './utils.ts';
-import { validateMachine } from './validateMachine.ts';
+} from './types';
+import { flatten, simpleStringify } from './utils';
+import { validateMachine } from './validateMachine';
 
 export async function testStateFromMeta(state: AnyState) {
   for (const id of Object.keys(state.meta)) {

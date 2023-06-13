@@ -1,5 +1,5 @@
-import { createMachine, interpret } from '../../src/index.ts';
-import { testAll } from '../utils.ts';
+import { createMachine, interpret } from '../../src/index';
+import { testAll } from '../utils';
 
 describe('Example 6.8', () => {
   const machine = createMachine({
