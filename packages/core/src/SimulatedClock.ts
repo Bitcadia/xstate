@@ -1,4 +1,4 @@
-import { Clock } from './interpreter.ts';
+import { Clock } from './interpreter';
 
 export interface SimulatedClock extends Clock {
   start(speed: number): void;

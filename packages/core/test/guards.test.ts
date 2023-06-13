@@ -1,6 +1,6 @@
-import { interpret, createMachine, raise } from '../src/index.ts';
+import { interpret, createMachine, raise } from '../src/index';
 import { and, not, or } from '../src/guards';
-import { trackEntries } from './utils.ts';
+import { trackEntries } from './utils';
 
 describe('guard conditions', () => {
   interface LightMachineCtx {
@@ -9,9 +9,9 @@ describe('guard conditions', () => {
   type LightMachineEvents =
     | { type: 'TIMER' }
     | {
-        type: 'EMERGENCY';
-        isEmergency?: boolean;
-      }
+      type: 'EMERGENCY';
+      isEmergency?: boolean;
+    }
     | { type: 'TIMER_COND_OBJ' }
     | { type: 'BAD_COND' };
 

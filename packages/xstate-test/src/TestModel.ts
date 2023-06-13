@@ -12,7 +12,7 @@ import type {
   TraversalOptions
 } from '@xstate/graph';
 import { EventObject, AnyState, ActorLogic } from 'xstate';
-import { deduplicatePaths } from './deduplicatePaths.ts';
+import { deduplicatePaths } from './deduplicatePaths';
 import {
   createShortestPathsGen,
   createSimplePathsGen
@@ -155,8 +155,8 @@ export class TestModel<TState, TEvent extends EventObject> {
         this.testPathSync(statePath, params),
       description: isStateLike(statePath.state)
         ? `Reaches ${getDescription(
-            statePath.state as any
-          ).trim()}: ${eventsString}`
+          statePath.state as any
+        ).trim()}: ${eventsString}`
         : JSON.stringify(statePath.state)
     };
   };

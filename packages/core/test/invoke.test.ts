@@ -1,6 +1,6 @@
 import { interval, of } from 'rxjs';
 import { map, take } from 'rxjs/operators';
-import { escalate, forwardTo, raise, sendTo } from '../src/actions.ts';
+import { escalate, forwardTo, raise, sendTo } from '../src/actions';
 import {
   fromCallback,
   fromEventObservable,
@@ -1739,7 +1739,7 @@ describe('invoke', () => {
           },
           waiting: {
             invoke: {
-              src: fromCallback(() => {})
+              src: fromCallback(() => { })
             }
           }
         }

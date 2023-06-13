@@ -1,9 +1,9 @@
-import { error, createInitEvent, initEvent } from './actions.ts';
-import { STATE_DELIMITER } from './constants.ts';
-import { createSpawner } from './spawn.ts';
-import { getPersistedState, State } from './State.ts';
-import { StateNode } from './StateNode.ts';
-import { interpret } from './interpreter.ts';
+import { error, createInitEvent, initEvent } from './actions';
+import { STATE_DELIMITER } from './constants';
+import { createSpawner } from './spawn';
+import { getPersistedState, State } from './State';
+import { StateNode } from './StateNode';
+import { interpret } from './interpreter';
 import {
   getConfiguration,
   getStateNodeByPath,
@@ -44,7 +44,7 @@ import type {
   AnyActorContext,
   AnyEventObject
 } from './types.ts';
-import { isErrorEvent, resolveReferencedActor } from './utils.ts';
+import { isErrorEvent, resolveReferencedActor } from './utils';
 
 export const NULL_EVENT = '';
 export const STATE_IDENTIFIER = '#';
@@ -72,12 +72,12 @@ export class StateMachine<
     TActorMap
   >
 > implements
-    ActorLogic<
-      TEvent,
-      State<TContext, TEvent, TResolvedTypesMeta>,
-      State<TContext, TEvent, TResolvedTypesMeta>,
-      PersistedMachineState<State<TContext, TEvent, TResolvedTypesMeta>>
-    >
+  ActorLogic<
+    TEvent,
+    State<TContext, TEvent, TResolvedTypesMeta>,
+    State<TContext, TEvent, TResolvedTypesMeta>,
+    PersistedMachineState<State<TContext, TEvent, TResolvedTypesMeta>>
+  >
 {
   // TODO: this getter should be removed
   public getContext(input?: any): TContext {
@@ -92,15 +92,15 @@ export class StateMachine<
     const resolvedContext =
       typeof context === 'function'
         ? context({
-            spawn: createSpawner(
-              actorCtx?.self,
-              this,
-              undefined as any, // TODO: this requires `| undefined` for all referenced dynamic inputs that are spawnable in the context factory,
-              createInitEvent(input),
-              actions
-            ),
-            input
-          })
+          spawn: createSpawner(
+            actorCtx?.self,
+            this,
+            undefined as any, // TODO: this requires `| undefined` for all referenced dynamic inputs that are spawnable in the context factory,
+            createInitEvent(input),
+            actions
+          ),
+          input
+        })
         : context;
 
     return [resolvedContext || ({} as TContext), actions];
@@ -177,8 +177,8 @@ export class StateMachine<
     TAction,
     TActorMap,
     AreAllImplementationsAssumedToBeProvided<TResolvedTypesMeta> extends false
-      ? MarkAllImplementationsAsProvided<TResolvedTypesMeta>
-      : TResolvedTypesMeta
+    ? MarkAllImplementationsAsProvided<TResolvedTypesMeta>
+    : TResolvedTypesMeta
   > {
     const { actions, guards, actors, delays } = this.options;
 

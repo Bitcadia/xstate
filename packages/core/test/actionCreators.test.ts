@@ -1,5 +1,5 @@
-import { createMachine } from '../src/index.ts';
-import { raise } from '../src/actions.ts';
+import { createMachine } from '../src/index';
+import { raise } from '../src/actions';
 
 describe('action creators', () => {
   describe('raise()', () => {

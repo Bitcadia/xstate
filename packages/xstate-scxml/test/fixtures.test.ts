@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import { xml2js } from 'xml-js';
-import { toSCXML } from '../src/index.ts';
+import { toSCXML } from '../src/index';
 
 const testGroups = {
   actionSend: ['send1']

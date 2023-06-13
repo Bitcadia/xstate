@@ -1,5 +1,5 @@
 import { createMachine } from 'xstate';
-import { createTestModel } from '../src/index.ts';
+import { createTestModel } from '../src/index';
 
 const machine = createMachine({
   initial: 'a',
@@ -25,11 +25,11 @@ describe('.testPathSync', () => {
       promiseStateModel.getShortestPaths().forEach((path) =>
         promiseStateModel.testPathSync(path, {
           states: {
-            a: async () => {},
-            b: () => {}
+            a: async () => { },
+            b: () => { }
           },
           events: {
-            EVENT: () => {}
+            EVENT: () => { }
           }
         })
       )
@@ -43,11 +43,11 @@ describe('.testPathSync', () => {
       promiseEventModel.getShortestPaths().forEach((path) =>
         promiseEventModel.testPathSync(path, {
           states: {
-            a: () => {},
-            b: () => {}
+            a: () => { },
+            b: () => { }
           },
           events: {
-            EVENT: async () => {}
+            EVENT: async () => { }
           }
         })
       )
@@ -61,11 +61,11 @@ describe('.testPathSync', () => {
       syncModel.getShortestPaths().forEach((path) =>
         syncModel.testPathSync(path, {
           states: {
-            a: () => {},
-            b: () => {}
+            a: () => { },
+            b: () => { }
           },
           events: {
-            EVENT: () => {}
+            EVENT: () => { }
           }
         })
       )

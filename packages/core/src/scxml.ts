@@ -1,12 +1,12 @@
 import { Element as XMLElement, xml2js } from 'xml-js';
-import { assign } from './actions/assign.ts';
-import { cancel } from './actions/cancel.ts';
-import { choose } from './actions/choose.ts';
-import { log } from './actions/log.ts';
-import { raise } from './actions/raise.ts';
-import { send } from './actions/send.ts';
-import { NULL_EVENT } from './constants.ts';
-import { not, stateIn } from './guards.ts';
+import { assign } from './actions/assign';
+import { cancel } from './actions/cancel';
+import { choose } from './actions/choose';
+import { log } from './actions/log';
+import { raise } from './actions/raise';
+import { send } from './actions/send';
+import { NULL_EVENT } from './constants';
+import { not, stateIn } from './guards';
 import {
   AnyStateMachine,
   AnyStateNode,
@@ -20,7 +20,7 @@ import {
   SendExpr,
   StateMeta
 } from './types.ts';
-import { flatten, isString, mapValues } from './utils.ts';
+import { flatten, isString, mapValues } from './utils';
 
 function appendWildcards(state: AnyStateNode) {
   for (const t of state.transitions) {
@@ -451,16 +451,16 @@ function toConfig(
 
     const onEntry = onEntryElements
       ? flatten(
-          onEntryElements.map((onEntryElement) =>
-            mapActions(onEntryElement.elements!)
-          )
+        onEntryElements.map((onEntryElement) =>
+          mapActions(onEntryElement.elements!)
         )
+      )
       : undefined;
 
     const onExit = onExitElements
       ? onExitElements.map((onExitElement) =>
-          mapActions(onExitElement.elements!)
-        )
+        mapActions(onExitElement.elements!)
+      )
       : undefined;
 
     const invoke = invokeElements.map((element) => {
@@ -487,19 +487,19 @@ function toConfig(
       id,
       ...(initial
         ? {
-            initial: String(initial)
-              .split(' ')
-              .map((id) => `#${id}`)
-          }
+          initial: String(initial)
+            .split(' ')
+            .map((id) => `#${id}`)
+        }
         : undefined),
       ...(parallel ? { type: 'parallel' } : undefined),
       ...(nodeJson.name === 'final' ? { type: 'final' } : undefined),
       ...(stateElements.length
         ? {
-            states: mapValues(states, (state, key) =>
-              toConfig(state, key, options)
-            )
-          }
+          states: mapValues(states, (state, key) =>
+            toConfig(state, key, options)
+          )
+        }
         : undefined),
       ...(transitionElements.length ? { on } : undefined),
       ...(always.length ? { always } : undefined),
@@ -530,23 +530,23 @@ function scxmlToMachine(
 
   const context = dataModelEl
     ? dataModelEl
-        .elements!.filter((element) => element.name === 'data')
-        .reduce((acc, element) => {
-          const { src, expr, id } = element.attributes!;
-          if (src) {
-            throw new Error(
-              "Conversion of `src` attribute on datamodel's <data> elements is not supported."
-            );
-          }
+      .elements!.filter((element) => element.name === 'data')
+      .reduce((acc, element) => {
+        const { src, expr, id } = element.attributes!;
+        if (src) {
+          throw new Error(
+            "Conversion of `src` attribute on datamodel's <data> elements is not supported."
+          );
+        }
 
-          if (expr === '_sessionid') {
-            acc[id!] = undefined;
-          } else {
-            acc[id!] = eval(`(${expr})`);
-          }
+        if (expr === '_sessionid') {
+          acc[id!] = undefined;
+        } else {
+          acc[id!] = eval(`(${expr})`);
+        }
 
-          return acc;
-        }, {})
+        return acc;
+      }, {})
     : undefined;
 
   const machine = createMachine({

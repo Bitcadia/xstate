@@ -4,10 +4,10 @@ import {
   MachineContext,
   StateMachine
 } from '../src/index.ts';
-import { fromPromise } from '../src/actors/index.ts';
-import { fromCallback } from '../src/actors/index.ts';
-import { createMachine } from '../src/Machine.ts';
-import { TypegenMeta } from '../src/typegenTypes.ts';
+import { fromPromise } from '../src/actors/index';
+import { fromCallback } from '../src/actors/index';
+import { createMachine } from '../src/Machine';
+import { TypegenMeta } from '../src/typegenTypes';
 
 describe('typegen types', () => {
   it('should not require implementations when creating machine using `createMachine`', () => {
@@ -191,7 +191,7 @@ describe('typegen types', () => {
       {
         actions: {
           // @ts-expect-error
-          unknownAction: () => {}
+          unknownAction: () => { }
         }
       }
     );
@@ -281,7 +281,7 @@ describe('typegen types', () => {
       {
         actors: {
           // @ts-expect-error
-          unknownActor: () => () => {}
+          unknownActor: () => () => { }
         }
       }
     );
@@ -434,12 +434,12 @@ describe('typegen types', () => {
     // @ts-expect-error
     machine.provide({
       actions: {
-        myAction: () => {}
+        myAction: () => { }
       }
     });
     machine.provide({
       actions: {
-        myAction: () => {}
+        myAction: () => { }
       },
       delays: {
         myDelay: () => 42
@@ -512,7 +512,7 @@ describe('typegen types', () => {
     interpret(
       machine.provide({
         actions: {
-          myAction: () => {}
+          myAction: () => { }
         }
       })
     );
@@ -541,7 +541,7 @@ describe('typegen types', () => {
       },
       {
         actions: {
-          fooAction: () => {}
+          fooAction: () => { }
         }
       }
     );
@@ -575,7 +575,7 @@ describe('typegen types', () => {
 
     machine.provide({
       actions: {
-        fooAction: () => {}
+        fooAction: () => { }
       },
       delays: {
         barDelay: () => 100
@@ -644,7 +644,7 @@ describe('typegen types', () => {
             event.output;
             // indirectly check that it's not any
             // @ts-expect-error
-            ((_accept: string) => {})(event.output);
+            ((_accept: string) => { })(event.output);
           }
         }
       }
@@ -688,7 +688,7 @@ describe('typegen types', () => {
             }
             event.type === 'done.invoke.myActor';
             event.output;
-            ((_accept: string) => {})(event.output);
+            ((_accept: string) => { })(event.output);
           }
         }
       }
@@ -862,7 +862,7 @@ describe('typegen types', () => {
       {
         actions: {
           actionName: assign(({ event }) => {
-            ((_accept: 'BAR') => {})(event.type);
+            ((_accept: 'BAR') => { })(event.type);
             return {};
           })
         }
@@ -939,7 +939,7 @@ describe('typegen types', () => {
         actors: {
           fooActor: fromCallback((_send, onReceive) => {
             onReceive((event) => {
-              ((_accept: string) => {})(event.type);
+              ((_accept: string) => { })(event.type);
               // @x-ts-expect-error TODO: determine how to get parent event type here
               event.unknown;
             });
@@ -966,9 +966,9 @@ describe('typegen types', () => {
       {
         actors: {
           fooActor: fromCallback((_send, onReceive) => {
-            onReceive((_event: { type: 'TEST' }) => {});
+            onReceive((_event: { type: 'TEST' }) => { });
             // @ts-expect-error
-            onReceive((_event: { type: number }) => {});
+            onReceive((_event: { type: number }) => { });
           })
         }
       }
@@ -1060,7 +1060,7 @@ describe('typegen types', () => {
     const state = interpret(machine).getSnapshot();
 
     if (state.matches('a') && state.matches('a.b')) {
-      ((_accept: string) => {})(state.context.foo);
+      ((_accept: string) => { })(state.context.foo);
     }
   });
 
@@ -1094,7 +1094,7 @@ describe('typegen types', () => {
       {
         // @ts-expect-error
         actions: {
-          testAction: () => {}
+          testAction: () => { }
         }
       }
     );
@@ -1117,7 +1117,7 @@ describe('typegen types', () => {
       {
         // @ts-expect-error
         delays: {
-          testDelay: () => {}
+          testDelay: () => { }
         }
       }
     );
@@ -1140,7 +1140,7 @@ describe('typegen types', () => {
       {
         // @ts-expect-error
         guards: {
-          testGuard: () => {}
+          testGuard: () => { }
         }
       }
     );

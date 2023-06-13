@@ -1,5 +1,5 @@
 import { assign, createMachine, interpret } from 'xstate';
-import { createDevTools, inspect } from '../src/index.ts';
+import { createDevTools, inspect } from '../src/index';
 
 // mute the warning about this not being implemented by jsdom
 window.open = () => null;
@@ -31,7 +31,7 @@ const createIframeMock = () => {
     }
   };
 
-  iframe.setAttribute = () => {};
+  iframe.setAttribute = () => { };
 
   return {
     iframe,

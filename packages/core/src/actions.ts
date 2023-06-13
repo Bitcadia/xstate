@@ -11,8 +11,8 @@ import {
   MachineContext,
   BaseActionObject
 } from './types.ts';
-import * as actionTypes from './actionTypes.ts';
-import { isArray } from './utils.ts';
+import * as actionTypes from './actionTypes';
+import { isArray } from './utils';
 import {
   createDynamicAction,
   isDynamicAction

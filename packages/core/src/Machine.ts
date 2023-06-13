@@ -12,7 +12,7 @@ import {
   TypegenDisabled,
   ResolveTypegenMeta
 } from './typegenTypes.ts';
-import { StateMachine } from './StateMachine.ts';
+import { StateMachine } from './StateMachine';
 
 export function createMachine<
   TContext extends MachineContext,

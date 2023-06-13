@@ -23,7 +23,7 @@ import {
   InitialTransitionConfig,
   MachineContext
 } from './types.ts';
-import { cloneState, State } from './State.ts';
+import { cloneState, State } from './State';
 import {
   after,
   done,
@@ -32,13 +32,13 @@ import {
   resolveActionObject,
   raise
 } from './actions.ts';
-import { cancel } from './actions/cancel.ts';
-import { invoke } from './actions/invoke.ts';
-import { stop } from './actions/stop.ts';
-import { STATE_IDENTIFIER, NULL_EVENT, WILDCARD } from './constants.ts';
-import { evaluateGuard, toGuardDefinition } from './guards.ts';
-import type { StateNode } from './StateNode.ts';
-import { isDynamicAction } from '../actions/dynamicAction.ts';
+import { cancel } from './actions/cancel';
+import { invoke } from './actions/invoke';
+import { stop } from './actions/stop';
+import { STATE_IDENTIFIER, NULL_EVENT, WILDCARD } from './constants';
+import { evaluateGuard, toGuardDefinition } from './guards';
+import type { StateNode } from './StateNode';
+import { isDynamicAction } from '../actions/dynamicAction';
 import {
   AnyActorContext,
   AnyEventObject,
@@ -51,8 +51,8 @@ import {
   InitialTransitionDefinition,
   SendActionObject
 } from '.';
-import { stopSignalType } from './actors/index.ts';
-import { ActorStatus } from './interpreter.ts';
+import { stopSignalType } from './actors/index';
+import { ActorStatus } from './interpreter';
 
 type Configuration<
   TContext extends MachineContext,
@@ -311,22 +311,22 @@ export function getDelayedTransitions<
 
   const delayedTransitions = isArray(afterConfig)
     ? afterConfig.map((transition, i) => {
-        const eventType = mutateEntryExit(transition.delay, i);
-        return { ...transition, event: eventType };
-      })
+      const eventType = mutateEntryExit(transition.delay, i);
+      return { ...transition, event: eventType };
+    })
     : Object.keys(afterConfig).flatMap((delay, i) => {
-        const configTransition = afterConfig[delay];
-        const resolvedTransition = isString(configTransition)
-          ? { target: configTransition }
-          : configTransition;
-        const resolvedDelay = !isNaN(+delay) ? +delay : delay;
-        const eventType = mutateEntryExit(resolvedDelay, i);
-        return toArray(resolvedTransition).map((transition) => ({
-          ...transition,
-          event: eventType,
-          delay: resolvedDelay
-        }));
-      });
+      const configTransition = afterConfig[delay];
+      const resolvedTransition = isString(configTransition)
+        ? { target: configTransition }
+        : configTransition;
+      const resolvedDelay = !isNaN(+delay) ? +delay : delay;
+      const eventType = mutateEntryExit(resolvedDelay, i);
+      return toArray(resolvedTransition).map((transition) => ({
+        ...transition,
+        event: eventType,
+        delay: resolvedDelay
+      }));
+    });
   return delayedTransitions.map((delayedTransition) => {
     const { delay } = delayedTransition;
     return {
@@ -361,9 +361,9 @@ export function formatTransition<
     actions: toActionObjects(toArray(transitionConfig.actions)),
     guard: transitionConfig.guard
       ? toGuardDefinition(
-          transitionConfig.guard,
-          (guardType) => guards[guardType]
-        )
+        transitionConfig.guard,
+        (guardType) => guards[guardType]
+      )
       : undefined,
     target,
     source: stateNode,
@@ -420,9 +420,9 @@ export function formatTransitions<
   }
   const doneConfig = stateNode.config.onDone
     ? toTransitionConfigArray(
-        String(done(stateNode.id)),
-        stateNode.config.onDone
-      )
+      String(done(stateNode.id)),
+      stateNode.config.onDone
+    )
     : [];
   const invokeConfig = stateNode.invoke.flatMap((invokeDef) => {
     const settleTransitions: any[] = [];
@@ -1048,15 +1048,15 @@ export function microstep<
   const [microstate, actions] = microstepProcedure(
     currentState._initial
       ? [
-          {
-            target: [...currentState.configuration].filter(isAtomicStateNode),
-            source: machine.root,
-            reenter: true,
-            actions: [],
-            eventType: null as any,
-            toJSON: null as any // TODO: fix
-          }
-        ]
+        {
+          target: [...currentState.configuration].filter(isAtomicStateNode),
+          source: machine.root,
+          reenter: true,
+          actions: [],
+          eventType: null as any,
+          toJSON: null as any // TODO: fix
+        }
+      ]
       : transitions,
     currentState,
     mutConfiguration,
@@ -1074,8 +1074,8 @@ export function microstep<
   nextState.changed = currentState._initial
     ? undefined
     : !stateValuesEqual(nextState.value, currentState.value) ||
-      actions.length > 0 ||
-      context !== currentState.context;
+    actions.length > 0 ||
+    context !== currentState.context;
 
   return nextState;
 }

@@ -4,7 +4,7 @@ import {
   InvokeDefinition,
   BaseActionObject
 } from './index.ts';
-import { mapValues, isFunction } from './utils.ts';
+import { mapValues, isFunction } from './utils';
 
 interface JSONFunction {
   $function: string;

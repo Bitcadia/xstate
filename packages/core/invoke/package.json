@@ -1,4 +1,3 @@
 {
-  "main": "dist/xstate-invoke.cjs.js",
-  "module": "dist/xstate-invoke.esm.js"
+  "main": "../src/invoke.ts"
 }

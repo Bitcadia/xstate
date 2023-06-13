@@ -7,9 +7,9 @@ import {
   AnyEventObject,
   MachineContext
 } from '../types.ts';
-import { send as sendActionType } from '../actionTypes.ts';
-import { isFunction, isString } from '../utils.ts';
-import { createDynamicAction } from '../../actions/dynamicAction.ts';
+import { send as sendActionType } from '../actionTypes';
+import { isFunction, isString } from '../utils';
+import { createDynamicAction } from '../../actions/dynamicAction';
 import {
   AnyActorRef,
   AnyInterpreter,
@@ -23,7 +23,7 @@ import {
   StateMeta,
   UnifiedArg
 } from '../index.ts';
-import { actionTypes, error } from '../actions.ts';
+import { actionTypes, error } from '../actions';
 
 /**
  * Sends an event. This returns an action that will be read by an interpreter to
@@ -68,8 +68,8 @@ export function send<
           options && options.id !== undefined
             ? options.id
             : isFunction(eventOrExpr)
-            ? eventOrExpr.name
-            : eventOrExpr.type
+              ? eventOrExpr.name
+              : eventOrExpr.type
       }
     },
     (event, { actorContext, state }) => {
@@ -83,8 +83,8 @@ export function send<
           options && options.id !== undefined
             ? options.id
             : isFunction(eventOrExpr)
-            ? eventOrExpr.name
-            : eventOrExpr.type
+              ? eventOrExpr.name
+              : eventOrExpr.type
       };
       const args: UnifiedArg<TContext, TEvent> & StateMeta<TEvent> = {
         context: state.context,
@@ -164,9 +164,9 @@ export function send<
               target.send(
                 sentEvent.type === actionTypes.error
                   ? {
-                      type: `${error(actorCtx.self.id)}`,
-                      data: sentEvent.data
-                    }
+                    type: `${error(actorCtx.self.id)}`,
+                    data: sentEvent.data
+                  }
                   : sendAction.params.event
               );
             });
@@ -279,10 +279,10 @@ export function sendTo<
   event:
     | EventFrom<TActor>
     | SendExpr<
-        TContext,
-        TEvent,
-        InferEvent<Cast<EventFrom<TActor>, EventObject>>
-      >,
+      TContext,
+      TEvent,
+      InferEvent<Cast<EventFrom<TActor>, EventObject>>
+    >,
   options?: SendActionOptions<TContext, TEvent>
 ) {
   return send<TContext, TEvent, any>(event, {

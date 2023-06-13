@@ -7,30 +7,30 @@ import {
   InterpreterOptions,
   StateFrom
 } from 'xstate';
-import { MaybeLazy, Prop } from './types.ts';
-import { useInterpret } from './useInterpret.ts';
+import { MaybeLazy, Prop } from './types';
+import { useInterpret } from './useInterpret';
 
 type RestParams<TMachine extends AnyStateMachine> =
   AreAllImplementationsAssumedToBeProvided<
     TMachine['__TResolvedTypesMeta']
   > extends false
-    ? [
-        options: InterpreterOptions<TMachine> &
-          InternalMachineImplementations<
-            TMachine['__TContext'],
-            TMachine['__TEvent'],
-            TMachine['__TResolvedTypesMeta'],
-            true
-          >
-      ]
-    : [
-        options?: InterpreterOptions<TMachine> &
-          InternalMachineImplementations<
-            TMachine['__TContext'],
-            TMachine['__TEvent'],
-            TMachine['__TResolvedTypesMeta']
-          >
-      ];
+  ? [
+    options: InterpreterOptions<TMachine> &
+    InternalMachineImplementations<
+      TMachine['__TContext'],
+      TMachine['__TEvent'],
+      TMachine['__TResolvedTypesMeta'],
+      true
+    >
+  ]
+  : [
+    options?: InterpreterOptions<TMachine> &
+    InternalMachineImplementations<
+      TMachine['__TContext'],
+      TMachine['__TEvent'],
+      TMachine['__TResolvedTypesMeta']
+    >
+  ];
 
 type UseMachineReturn<
   TMachine extends AnyStateMachine,

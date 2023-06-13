@@ -10,35 +10,35 @@ import {
   StateFrom,
   toObserver
 } from 'xstate';
-import { MaybeLazy } from './types.ts';
+import { MaybeLazy } from './types';
 
 type RestParams<TMachine extends AnyStateMachine> =
   AreAllImplementationsAssumedToBeProvided<
     TMachine['__TResolvedTypesMeta']
   > extends false
-    ? [
-        options: InterpreterOptions<TMachine> &
-          InternalMachineImplementations<
-            TMachine['__TContext'],
-            TMachine['__TEvent'],
-            TMachine['__TResolvedTypesMeta'],
-            true
-          >,
-        observerOrListener?:
-          | Observer<StateFrom<TMachine>>
-          | ((value: StateFrom<TMachine>) => void)
-      ]
-    : [
-        options?: InterpreterOptions<TMachine> &
-          InternalMachineImplementations<
-            TMachine['__TContext'],
-            TMachine['__TEvent'],
-            TMachine['__TResolvedTypesMeta']
-          >,
-        observerOrListener?:
-          | Observer<StateFrom<TMachine>>
-          | ((value: StateFrom<TMachine>) => void)
-      ];
+  ? [
+    options: InterpreterOptions<TMachine> &
+    InternalMachineImplementations<
+      TMachine['__TContext'],
+      TMachine['__TEvent'],
+      TMachine['__TResolvedTypesMeta'],
+      true
+    >,
+    observerOrListener?:
+    | Observer<StateFrom<TMachine>>
+    | ((value: StateFrom<TMachine>) => void)
+  ]
+  : [
+    options?: InterpreterOptions<TMachine> &
+    InternalMachineImplementations<
+      TMachine['__TContext'],
+      TMachine['__TEvent'],
+      TMachine['__TResolvedTypesMeta']
+    >,
+    observerOrListener?:
+    | Observer<StateFrom<TMachine>>
+    | ((value: StateFrom<TMachine>) => void)
+  ];
 
 export function useInterpret<TMachine extends AnyStateMachine>(
   getMachine: MaybeLazy<TMachine>,

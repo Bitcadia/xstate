@@ -6,7 +6,7 @@ import {
   MissingImplementationsError,
   StateFrom
 } from 'xstate';
-import { useActor } from './useActor.ts';
+import { useActor } from './useActor';
 
 /**
  *
@@ -20,9 +20,9 @@ export function useMachine<TMachine extends AnyStateMachine>(
     : MissingImplementationsError<TMachine['__TResolvedTypesMeta']>,
   options: InterpreterOptions<TMachine> = {}
 ): [
-  StateFrom<TMachine>,
-  ActorRefFrom<TMachine>['send'],
-  ActorRefFrom<TMachine>
-] {
+    StateFrom<TMachine>,
+    ActorRefFrom<TMachine>['send'],
+    ActorRefFrom<TMachine>
+  ] {
   return useActor(machine as any, options as any) as any;
 }

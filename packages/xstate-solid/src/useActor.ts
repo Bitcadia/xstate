@@ -1,9 +1,9 @@
 import type { ActorRef, SnapshotFrom, EventObject } from 'xstate';
 import type { Accessor } from 'solid-js';
 import { createEffect, createMemo, onCleanup } from 'solid-js';
-import { deriveServiceState } from './deriveServiceState.ts';
-import { createImmutable } from './createImmutable.ts';
-import type { CheckSnapshot } from './types.ts';
+import { deriveServiceState } from './deriveServiceState';
+import { createImmutable } from './createImmutable';
+import type { CheckSnapshot } from './types';
 import { unwrap } from 'solid-js/store';
 
 const noop = () => {

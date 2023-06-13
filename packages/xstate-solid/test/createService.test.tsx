@@ -1,7 +1,7 @@
 /* @jsxImportSource solid-js */
 import { createMachine } from 'xstate';
 import { render, fireEvent, screen } from 'solid-testing-library';
-import { createService } from '../src/index.ts';
+import { createService } from '../src/index';
 import { createEffect } from 'solid-js';
 
 describe('createService', () => {
