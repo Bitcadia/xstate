@@ -6,7 +6,7 @@ import {
   toInvokeConfig,
   toTransitionConfigArray,
   createInvokeId
-} from './utils.ts';
+} from './utils';
 import type {
   EventObject,
   HistoryStateNodeConfig,
@@ -25,20 +25,20 @@ import type {
   MachineContext,
   BaseActionObject,
   AnyActorLogic
-} from './types.ts';
-import type { State } from './State.ts';
-import * as actionTypes from './actionTypes.ts';
-import { toActionObjects } from './actions.ts';
-import { formatInitialTransition, formatTransition } from './stateUtils.ts';
+} from './types';
+import type { State } from './State';
+import * as actionTypes from './actionTypes';
+import { toActionObjects } from './actions';
+import { formatInitialTransition, formatTransition } from './stateUtils';
 import {
   getDelayedTransitions,
   formatTransitions,
   getCandidates
-} from './stateUtils.ts';
-import { evaluateGuard } from './guards.ts';
-import type { StateMachine } from './StateMachine.ts';
-import { memo } from './memo.ts';
-import { NULL_EVENT } from './constants.ts';
+} from './stateUtils';
+import { evaluateGuard } from './guards';
+import type { StateMachine } from './StateMachine';
+import { memo } from './memo';
+import { NULL_EVENT } from './constants';
 
 const EMPTY_OBJECT = {};
 
@@ -144,8 +144,8 @@ export class StateNode<
       (this.config.states && Object.keys(this.config.states).length
         ? 'compound'
         : this.config.history
-        ? 'history'
-        : 'atomic');
+          ? 'history'
+          : 'atomic');
     this.description = this.config.description;
 
     this.order = this.machine.idMap.size;
@@ -154,25 +154,23 @@ export class StateNode<
     this.states = (
       this.config.states
         ? mapValues(
-            this.config.states,
-            (stateConfig: StateNodeConfig<TContext, TEvent>, key) => {
-              const stateNode = new StateNode(stateConfig, {
-                _parent: this,
-                _key: key as string,
-                _machine: this.machine
-              });
-              return stateNode;
-            }
-          )
+          this.config.states,
+          (stateConfig: StateNodeConfig<TContext, TEvent>, key) => {
+            const stateNode = new StateNode(stateConfig, {
+              _parent: this,
+              _key: key as string,
+              _machine: this.machine
+            });
+            return stateNode;
+          }
+        )
         : EMPTY_OBJECT
     ) as StateNodesConfig<TContext, TEvent>;
 
     if (this.type === 'compound' && !this.config.initial) {
       throw new Error(
-        `No initial state specified for compound state node "#${
-          this.id
-        }". Try adding { initial: "${
-          Object.keys(this.states)[0]
+        `No initial state specified for compound state node "#${this.id
+        }". Try adding { initial: "${Object.keys(this.states)[0]
         }" } to the state config.`
       );
     }
@@ -216,18 +214,18 @@ export class StateNode<
       type: this.type,
       initial: this.initial
         ? {
-            target: this.initial.target,
-            source: this,
-            actions: this.initial.actions,
-            eventType: null as any,
-            reenter: false,
-            toJSON: () => ({
-              target: this.initial!.target!.map((t) => `#${t.id}`),
-              source: `#${this.id}`,
-              actions: this.initial!.actions,
-              eventType: null as any
-            })
-          }
+          target: this.initial.target,
+          source: this,
+          actions: this.initial.actions,
+          eventType: null as any,
+          reenter: false,
+          toJSON: () => ({
+            target: this.initial!.target!.map((t) => `#${t.id}`),
+            source: `#${this.id}`,
+            actions: this.initial!.actions,
+            eventType: null as any
+          })
+        }
         : undefined,
       history: this.history,
       states: mapValues(this.states, (state: StateNode<TContext, TEvent>) => {
@@ -265,8 +263,8 @@ export class StateNode<
         const resolvedSrc = isString(src)
           ? src
           : !('type' in src)
-          ? resolvedId
-          : src;
+            ? resolvedId
+            : src;
 
         if (
           !this.machine.options.actors[resolvedId] &&
@@ -352,10 +350,8 @@ export class StateNode<
           evaluateGuard<TContext, TEvent>(guard, resolvedContext, event, state);
       } catch (err) {
         throw new Error(
-          `Unable to evaluate guard '${
-            guard!.type
-          }' in transition for event '${eventType}' in state node '${
-            this.id
+          `Unable to evaluate guard '${guard!.type
+          }' in transition for event '${eventType}' in state node '${this.id
           }':\n${err.message}`
         );
       }

@@ -1,5 +1,5 @@
 import { createMachine } from 'xstate';
-import { createTestModel } from '../src/index.ts';
+import { createTestModel } from '../src/index';
 
 describe('types', () => {
   it('`EventExecutor` should be passed event with type that corresponds to its key', () => {
@@ -30,14 +30,14 @@ describe('types', () => {
       path.test({
         events: {
           a: ({ event }) => {
-            ((_accept: 'a') => {})(event.type);
+            ((_accept: 'a') => { })(event.type);
             // @ts-expect-error
-            ((_accept: 'b') => {})(event.type);
+            ((_accept: 'b') => { })(event.type);
           },
           b: ({ event }) => {
             // @ts-expect-error
-            ((_accept: 'a') => {})(event.type);
-            ((_accept: 'b') => {})(event.type);
+            ((_accept: 'a') => { })(event.type);
+            ((_accept: 'b') => { })(event.type);
           }
         }
       });

@@ -6,10 +6,10 @@ import type {
   GuardDefinition,
   GuardPredicate,
   MachineContext
-} from './types.ts';
-import { isStateId } from './stateUtils.ts';
-import { isFunction, isString } from './utils.ts';
-import type { State } from './State.ts';
+} from './types';
+import { isStateId } from './stateUtils';
+import { isFunction, isString } from './utils';
+import type { State } from './State';
 
 export function stateIn<
   TContext extends MachineContext,

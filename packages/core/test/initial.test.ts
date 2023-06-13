@@ -1,4 +1,4 @@
-import { interpret, createMachine } from '../src/index.ts';
+import { interpret, createMachine } from '../src/index';
 
 describe('Initial states', () => {
   it('should return the correct initial state', () => {

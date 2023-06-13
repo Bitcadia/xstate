@@ -1,5 +1,5 @@
 import { of } from 'rxjs';
-import { fromCallback } from '../src/actors/callback.ts';
+import { fromCallback } from '../src/actors/callback';
 import {
   ActorRef,
   ActorSystem,
@@ -12,7 +12,7 @@ import {
   interpret,
   sendTo,
   stop
-} from '../src/index.ts';
+} from '../src/index';
 
 describe('system', () => {
   it('should register an invoked actor', (done) => {

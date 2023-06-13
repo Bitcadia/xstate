@@ -3,14 +3,14 @@ import type {
   ActorRef,
   BaseActorRef,
   AnyEventObject
-} from '../types.ts';
-import { symbolObservable } from '../symbolObservable.ts';
-import { ActorStatus, interpret } from '../interpreter.ts';
-import { fromTransition } from './transition.ts';
-export { fromTransition } from './transition.ts';
-export { fromPromise } from './promise.ts';
-export { fromObservable, fromEventObservable } from './observable.ts';
-export { fromCallback } from './callback.ts';
+} from '../types';
+import { symbolObservable } from '../symbolObservable';
+import { ActorStatus, interpret } from '../interpreter';
+import { fromTransition } from './transition';
+export { fromTransition } from './transition';
+export { fromPromise } from './promise';
+export { fromObservable, fromEventObservable } from './observable';
+export { fromCallback } from './callback';
 
 export const startSignalType = 'xstate.init';
 export const stopSignalType = 'xstate.stop';

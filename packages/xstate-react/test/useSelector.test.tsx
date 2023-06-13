@@ -15,7 +15,7 @@ import {
   useActorRef,
   useMachine,
   useSelector
-} from '../src/index.ts';
+} from '../src/index';
 import { describeEachReactMode } from './utils';
 import { createEmptyActor } from 'xstate/actors';
 
@@ -333,7 +333,7 @@ describeEachReactMode('useSelector (%s)', ({ suiteKey, render }) => {
       interpret({
         transition: (s) => s,
         subscribe: () => {
-          return { unsubscribe: () => {} };
+          return { unsubscribe: () => { } };
         },
         getSnapshot: () => latestValue,
         getInitialState: () => latestValue
@@ -473,7 +473,7 @@ describeEachReactMode('useSelector (%s)', ({ suiteKey, render }) => {
       interpret({
         transition: (s) => s,
         subscribe: () => {
-          return { unsubscribe: () => {} };
+          return { unsubscribe: () => { } };
         },
         getSnapshot: () => latestValue,
         getInitialState: () => latestValue
@@ -510,7 +510,7 @@ describeEachReactMode('useSelector (%s)', ({ suiteKey, render }) => {
       interpret({
         transition: (s) => s,
         subscribe: () => {
-          return { unsubscribe: () => {} };
+          return { unsubscribe: () => { } };
         },
         getSnapshot: () => latestValue,
         getInitialState: () => latestValue
@@ -541,7 +541,7 @@ describeEachReactMode('useSelector (%s)', ({ suiteKey, render }) => {
     const actor = interpret({
       transition: (s) => s,
       subscribe: () => {
-        return { unsubscribe: () => {} };
+        return { unsubscribe: () => { } };
       },
       getSnapshot: () => undefined,
       getInitialState: () => undefined
@@ -651,7 +651,7 @@ describeEachReactMode('useSelector (%s)', ({ suiteKey, render }) => {
 
     function App() {
       const service = useActorRef(machine);
-      useSelector(service, () => {});
+      useSelector(service, () => { });
       expect(called).toBe(false);
       return null;
     }
@@ -737,8 +737,8 @@ describeEachReactMode('useSelector (%s)', ({ suiteKey, render }) => {
       const state = useSelector(props.actor ?? createEmptyActor(), (s) => s);
 
       // @ts-expect-error
-      ((_accept: { count: number }) => {})(state);
-      ((_accept: { count: number } | undefined) => {})(state);
+      ((_accept: { count: number }) => { })(state);
+      ((_accept: { count: number } | undefined) => { })(state);
 
       return <div data-testid="state">{state?.count ?? 'undefined'}</div>;
     };

@@ -1,15 +1,15 @@
 import { EMPTY, interval, of, throwError } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { createMachine, interpret } from '../src/index.ts';
+import { createMachine, interpret } from '../src/index';
 import {
   fromCallback,
   fromEventObservable,
   fromObservable,
   fromPromise,
   fromTransition
-} from '../src/actors/index.ts';
-import { waitFor } from '../src/waitFor.ts';
-import { raise, sendTo } from '../src/actions.ts';
+} from '../src/actors/index';
+import { waitFor } from '../src/waitFor';
+import { raise, sendTo } from '../src/actions';
 
 describe('promise logic (fromPromise)', () => {
   it('should interpret a promise', async () => {

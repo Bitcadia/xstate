@@ -1,24 +1,24 @@
-import { doneInvoke, forwardTo, sendParent, sendTo } from './actions.ts';
-export { assign } from './actions/assign.ts';
-export { cancel } from './actions/cancel.ts';
-export { choose } from './actions/choose.ts';
-export { log } from './actions/log.ts';
-export { pure } from './actions/pure.ts';
-export { raise } from './actions/raise.ts';
-export { stop } from './actions/stop.ts';
-import { interpret, Interpreter, ActorStatus } from './interpreter.ts';
-import { createMachine } from './Machine.ts';
-import { mapState } from './mapState.ts';
-import { State } from './State.ts';
-import { StateNode } from './StateNode.ts';
-export { SimulatedClock } from './SimulatedClock.ts';
-export { StateMachine } from './StateMachine.ts';
-export { getStateNodes } from './stateUtils.ts';
-export { waitFor } from './waitFor.ts';
-export * from './typegenTypes.ts';
-export * from './types.ts';
+import { doneInvoke, forwardTo, sendParent, sendTo } from './actions';
+export { assign } from './actions/assign';
+export { cancel } from './actions/cancel';
+export { choose } from './actions/choose';
+export { log } from './actions/log';
+export { pure } from './actions/pure';
+export { raise } from './actions/raise';
+export { stop } from './actions/stop';
+import { interpret, Interpreter, ActorStatus } from './interpreter';
+import { createMachine } from './Machine';
+import { mapState } from './mapState';
+import { State } from './State';
+import { StateNode } from './StateNode';
+export { SimulatedClock } from './SimulatedClock';
+export { StateMachine } from './StateMachine';
+export { getStateNodes } from './stateUtils';
+export { waitFor } from './waitFor';
+export * from './typegenTypes';
+export * from './types';
 // TODO: decide from where those should be exported
-export { matchesState, pathToStateValue, toObserver } from './utils.ts';
+export { matchesState, pathToStateValue, toObserver } from './utils';
 export {
   StateNode,
   State,
@@ -38,9 +38,9 @@ export {
   fromCallback,
   fromEventObservable,
   fromTransition
-} from './actors/index.ts';
+} from './actors/index';
 
-export { stateIn, not, and, or } from './guards.ts';
+export { stateIn, not, and, or } from './guards';
 
 declare global {
   interface SymbolConstructor {

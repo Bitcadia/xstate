@@ -1,4 +1,4 @@
-import { createMachine } from '../src/index.ts';
+import { createMachine } from '../src/index';
 
 describe('smoke test', () => {
   it('should work with built files', () => {

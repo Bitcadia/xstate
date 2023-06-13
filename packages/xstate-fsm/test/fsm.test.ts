@@ -3,7 +3,7 @@ import {
   assign,
   interpret,
   StateMachine
-} from '../src/index.ts';
+} from '../src/index';
 
 describe('@xstate/fsm', () => {
   interface LightContext {
@@ -19,53 +19,53 @@ describe('@xstate/fsm', () => {
 
   type LightState =
     | {
-        value: 'green';
-        context: LightContext & { go: true };
-      }
+      value: 'green';
+      context: LightContext & { go: true };
+    }
     | {
-        value: 'yellow';
-        context: LightContext & { go: false };
-      }
+      value: 'yellow';
+      context: LightContext & { go: false };
+    }
     | {
-        value: 'red';
-        context: LightContext & { go: false };
-      };
+      value: 'red';
+      context: LightContext & { go: false };
+    };
 
   const lightConfig: StateMachine.Config<LightContext, LightEvent, LightState> =
-    {
-      id: 'light',
-      initial: 'green',
-      context: { count: 0, foo: 'bar', go: true },
-      states: {
-        green: {
-          entry: 'enterGreen',
-          exit: [
-            'exitGreen',
-            assign({ count: (ctx) => ctx.count + 1 }),
-            assign({ count: (ctx) => ctx.count + 1 }),
-            assign<LightContext>({ foo: 'static' }),
-            assign({ foo: (ctx) => ctx.foo + '++' })
-          ],
-          on: {
-            TIMER: {
-              target: 'yellow',
-              actions: ['g-y 1', 'g-y 2']
-            }
+  {
+    id: 'light',
+    initial: 'green',
+    context: { count: 0, foo: 'bar', go: true },
+    states: {
+      green: {
+        entry: 'enterGreen',
+        exit: [
+          'exitGreen',
+          assign({ count: (ctx) => ctx.count + 1 }),
+          assign({ count: (ctx) => ctx.count + 1 }),
+          assign<LightContext>({ foo: 'static' }),
+          assign({ foo: (ctx) => ctx.foo + '++' })
+        ],
+        on: {
+          TIMER: {
+            target: 'yellow',
+            actions: ['g-y 1', 'g-y 2']
           }
-        },
-        yellow: {
-          entry: assign<LightContext>({ go: false }),
-          on: {
-            INC: { actions: assign({ count: (ctx) => ctx.count + 1 }) },
-            EMERGENCY: {
-              target: 'red',
-              guard: (ctx, e) => ctx.count + e.value === 2
-            }
+        }
+      },
+      yellow: {
+        entry: assign<LightContext>({ go: false }),
+        on: {
+          INC: { actions: assign({ count: (ctx) => ctx.count + 1 }) },
+          EMERGENCY: {
+            target: 'red',
+            guard: (ctx, e) => ctx.count + e.value === 2
           }
-        },
-        red: {}
-      }
-    };
+        }
+      },
+      red: {}
+    }
+  };
   const lightFSM = createMachine<LightContext, LightEvent, LightState>(
     lightConfig
   );

@@ -1,5 +1,5 @@
-import { interpret, waitFor } from '../src/index.ts';
-import { createMachine } from '../src/index.ts';
+import { interpret, waitFor } from '../src/index';
+import { createMachine } from '../src/index';
 
 describe('waitFor', () => {
   it('should wait for a condition to be true and return the emitted value', async () => {
@@ -118,7 +118,7 @@ describe('waitFor', () => {
     const spy = jest.fn();
     actorRef.subscribe = spy;
 
-    waitFor(actorRef, () => true).then(() => {});
+    waitFor(actorRef, () => true).then(() => { });
 
     expect(spy).not.toHaveBeenCalled();
   });

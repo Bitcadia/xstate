@@ -1,4 +1,4 @@
-import { createMachine, StateNode } from '../src/index.ts';
+import { createMachine, StateNode } from '../src/index';
 import { flatten } from '../src/utils';
 
 describe('document order', () => {

@@ -1,4 +1,4 @@
-import { createAnalyzer } from '../src/index.ts';
+import { createAnalyzer } from '../src/index';
 import { createMachine, interpret } from 'xstate';
 
 const pedestrianStates = {

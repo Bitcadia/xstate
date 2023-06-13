@@ -10,28 +10,28 @@ import {
   DoneEventObject,
   MachineContext,
   BaseActionObject
-} from './types.ts';
-import * as actionTypes from './actionTypes.ts';
-import { isArray } from './utils.ts';
+} from './types';
+import * as actionTypes from './actionTypes';
+import { isArray } from './utils';
 import {
   createDynamicAction,
   isDynamicAction
-} from '../actions/dynamicAction.ts';
+} from '../actions/dynamicAction';
 export {
   send,
   sendTo,
   sendParent,
   forwardTo,
   escalate
-} from './actions/send.ts';
+} from './actions/send';
 
-export { stop } from './actions/stop.ts';
-export { log } from './actions/log.ts';
-export { cancel } from './actions/cancel.ts';
-export { assign } from './actions/assign.ts';
-export { raise } from './actions/raise.ts';
-export { choose } from './actions/choose.ts';
-export { pure } from './actions/pure.ts';
+export { stop } from './actions/stop';
+export { log } from './actions/log';
+export { cancel } from './actions/cancel';
+export { assign } from './actions/assign';
+export { raise } from './actions/raise';
+export { choose } from './actions/choose';
+export { pure } from './actions/pure';
 export { actionTypes };
 
 export const initEvent = { type: actionTypes.init };
