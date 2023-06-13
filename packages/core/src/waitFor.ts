@@ -1,5 +1,5 @@
 import isDevelopment from '#is-development';
-import { ActorRef, SnapshotFrom, Subscription } from './types.ts';
+import { ActorRef, SnapshotFrom, Subscription } from './types';
 
 interface WaitForOptions {
   /**
@@ -56,9 +56,9 @@ export function waitFor<TActorRef extends ActorRef<any, any>>(
       resolvedOptions.timeout === Infinity
         ? undefined
         : setTimeout(() => {
-            sub!.unsubscribe();
-            rej(new Error(`Timeout of ${resolvedOptions.timeout} ms exceeded`));
-          }, resolvedOptions.timeout);
+          sub!.unsubscribe();
+          rej(new Error(`Timeout of ${resolvedOptions.timeout} ms exceeded`));
+        }, resolvedOptions.timeout);
 
     const dispose = () => {
       clearTimeout(handle!);

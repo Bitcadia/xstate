@@ -1,5 +1,5 @@
 import { of } from 'rxjs';
-import { fromCallback } from '../src/actors/callback.ts';
+import { fromCallback } from '../src/actors/callback';
 import {
   ActorRef,
   ActorSystem,

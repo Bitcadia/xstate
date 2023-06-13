@@ -1,8 +1,8 @@
 import isDevelopment from '#is-development';
-import { AnyActorLogic, AnyState } from './index.ts';
-import { errorExecution, errorPlatform } from './actionTypes.ts';
-import { NULL_EVENT, STATE_DELIMITER, TARGETLESS_KEY } from './constants.ts';
-import type { StateNode } from './StateNode.ts';
+import { AnyActorLogic, AnyState } from './index';
+import { errorExecution, errorPlatform } from './actionTypes';
+import { NULL_EVENT, STATE_DELIMITER, TARGETLESS_KEY } from './constants';
+import type { StateNode } from './StateNode';
 import type {
   ActorLogic,
   AnyEventObject,
@@ -402,7 +402,7 @@ export function reportUnhandledExceptionOnInvocation(
       // tslint:disable-next-line:no-console
       console.error(
         `Missing onError handler and/or unhandled exception/promise rejection for invocation '${id}'. ` +
-          `Original error: '${originalError}'. ${originalStackTrace} Current error is '${currentError}'.${stackTrace}`
+        `Original error: '${originalError}'. ${originalStackTrace} Current error is '${currentError}'.${stackTrace}`
       );
     }
   }
@@ -439,7 +439,7 @@ export function toObserver<T>(
   errorHandler?: (error: any) => void,
   completionHandler?: () => void
 ): Observer<T> {
-  const noop = () => {};
+  const noop = () => { };
   const isObserver = typeof nextHandler === 'object';
   const self = isObserver ? nextHandler : null;
 

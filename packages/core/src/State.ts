@@ -1,12 +1,12 @@
 import isDevelopment from '#is-development';
-import { memo } from './memo.ts';
-import type { StateNode } from './StateNode.ts';
+import { memo } from './memo';
+import type { StateNode } from './StateNode';
 import {
   getConfiguration,
   getStateNodes,
   getStateValue
 } from './stateUtils.ts';
-import { TypegenDisabled, TypegenEnabled } from './typegenTypes.ts';
+import { TypegenDisabled, TypegenEnabled } from './typegenTypes';
 import type {
   ActorRef,
   AnyState,
@@ -19,7 +19,7 @@ import type {
   StateConfig,
   StateValue
 } from './types.ts';
-import { flatten, isString, matchesState } from './utils.ts';
+import { flatten, isString, matchesState } from './utils';
 
 export function isStateConfig<
   TContext extends MachineContext,
@@ -180,8 +180,8 @@ export class State<
    */
   public matches<
     TSV extends TResolvedTypesMeta extends TypegenEnabled
-      ? Prop<Prop<TResolvedTypesMeta, 'resolved'>, 'matchesStates'>
-      : StateValue
+    ? Prop<Prop<TResolvedTypesMeta, 'resolved'>, 'matchesStates'>
+    : StateValue
   >(parentStateValue: TSV): boolean {
     return matchesState(parentStateValue as any, this.value);
   }

@@ -4,9 +4,9 @@ import type {
   BaseActorRef,
   AnyEventObject
 } from '../types.ts';
-import { symbolObservable } from '../symbolObservable.ts';
-import { ActorStatus, interpret } from '../interpreter.ts';
-import { fromTransition } from './transition.ts';
+import { symbolObservable } from '../symbolObservable';
+import { ActorStatus, interpret } from '../interpreter';
+import { fromTransition } from './transition';
 export { fromTransition } from './transition.ts';
 export { fromPromise } from './promise.ts';
 export { fromObservable, fromEventObservable } from './observable.ts';

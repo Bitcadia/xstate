@@ -8,8 +8,8 @@ import {
 } from 'xstate';
 import { XStateDevInterface } from 'xstate/dev';
 import { toActorRef } from 'xstate/actors';
-import { createInspectMachine, InspectMachineEvent } from './inspectMachine.ts';
-import { stringifyMachine, stringifyState } from './serialize.ts';
+import { createInspectMachine, InspectMachineEvent } from './inspectMachine';
+import { stringifyMachine, stringifyState } from './serialize';
 import type {
   Inspector,
   InspectorOptions,

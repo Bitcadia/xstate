@@ -1,10 +1,10 @@
 import isDevelopment from '#is-development';
-import { Mailbox } from './Mailbox.ts';
-import { doneInvoke, error } from './actions.ts';
-import { stopSignalType } from './actors/index.ts';
-import { devToolsAdapter } from './dev/index.ts';
-import { symbolObservable } from './symbolObservable.ts';
-import { createSystem } from './system.ts';
+import { Mailbox } from './Mailbox';
+import { doneInvoke, error } from './actions';
+import { stopSignalType } from './actors/index';
+import { devToolsAdapter } from './dev/index';
+import { symbolObservable } from './symbolObservable';
+import { createSystem } from './system';
 import {
   AreAllImplementationsAssumedToBeProvided,
   MissingImplementationsError
@@ -31,7 +31,7 @@ import {
   SendActionObject,
   Subscription
 } from './types.ts';
-import { toObserver } from './utils.ts';
+import { toObserver } from './utils';
 
 export type SnapshotListener<TLogic extends AnyActorLogic> = (
   state: SnapshotFrom<TLogic>
@@ -71,8 +71,8 @@ const defaultOptions = {
 
 type InternalStateFrom<TLogic extends ActorLogic<any, any, any>> =
   TLogic extends ActorLogic<infer _, infer __, infer TInternalState>
-    ? TInternalState
-    : never;
+  ? TInternalState
+  : never;
 
 export class Interpreter<
   TLogic extends AnyActorLogic,
@@ -393,10 +393,8 @@ export class Interpreter<
         const eventString = JSON.stringify(event);
 
         console.warn(
-          `Event "${event.type.toString()}" was sent to stopped actor "${
-            this.id
-          } (${
-            this.sessionId
+          `Event "${event.type.toString()}" was sent to stopped actor "${this.id
+          } (${this.sessionId
           })". This actor has already reached its final state, and will not transition.\nEvent: ${eventString}`
         );
       }
@@ -405,9 +403,8 @@ export class Interpreter<
 
     if (this.status !== ActorStatus.Running && !this.options.deferEvents) {
       throw new Error(
-        `Event "${event.type}" was sent to uninitialized actor "${
-          this.id
-          // tslint:disable-next-line:max-line-length
+        `Event "${event.type}" was sent to uninitialized actor "${this.id
+        // tslint:disable-next-line:max-line-length
         }". Make sure .start() is called for this actor, or set { deferEvents: true } in the actor options.\nEvent: ${JSON.stringify(
           event
         )}`

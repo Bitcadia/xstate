@@ -6,9 +6,9 @@ import {
   MachineContext,
   EventObject
 } from './index.ts';
-import { invoke } from './actions/invoke.ts';
-import { interpret } from './interpreter.ts';
-import { isString, resolveReferencedActor } from './utils.ts';
+import { invoke } from './actions/invoke';
+import { interpret } from './interpreter';
+import { isString, resolveReferencedActor } from './utils';
 
 export function createSpawner<
   TContext extends MachineContext,
@@ -36,10 +36,10 @@ export function createSpawner<
           input:
             typeof input === 'function'
               ? input({
-                  context,
-                  event,
-                  self
-                })
+                context,
+                event,
+                self
+              })
               : input
         });
 

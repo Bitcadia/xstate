@@ -1,5 +1,5 @@
-import { fromCallback } from '../src/actors/index.ts';
-import { interpret, createMachine, assign } from '../src/index.ts';
+import { fromCallback } from '../src/actors/index';
+import { interpret, createMachine, assign } from '../src/index';
 
 // TODO: remove this file but before doing that ensure that things tested here are covered by other tests
 
