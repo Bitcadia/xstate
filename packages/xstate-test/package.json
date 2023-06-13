@@ -16,27 +16,8 @@
   "author": "David Khourshid <davidkpiano@gmail.com>",
   "homepage": "https://github.com/statelyai/xstate/tree/main/packages/xstate-test#readme",
   "license": "MIT",
-  "main": "dist/xstate-test.cjs.js",
-  "module": "dist/xstate-test.esm.js",
-  "browser": {
-    "./dist/xstate-test.esm.js": "./dist/xstate-test.browser.esm.js"
-  },
-  "exports": {
-    ".": {
-      "types": {
-        "import": "./dist/xstate-test.cjs.mjs",
-        "default": "./dist/xstate-test.cjs.js"
-      },
-      "module": "./dist/xstate-test.esm.js",
-      "import": "./dist/xstate-test.cjs.mjs",
-      "default": "./dist/xstate-test.cjs.js"
-    },
-    "./package.json": "./package.json"
-  },
+  "main": "src/index.ts",
   "sideEffects": false,
-  "files": [
-    "dist"
-  ],
   "repository": {
     "type": "git",
     "url": "git+ssh://git@github.com/statelyai/xstate.git"
@@ -46,13 +27,13 @@
     "url": "https://github.com/statelyai/xstate/issues"
   },
   "peerDependencies": {
-    "xstate": "^5.0.0-beta.13"
+    "xstate": "5.0.0-beta.14"
   },
   "devDependencies": {
     "strip-ansi": "^5.2.0",
-    "xstate": "5.0.0-beta.13"
+    "xstate": "5.0.0-beta.14"
   },
   "dependencies": {
-    "@xstate/graph": "^2.0.0-alpha.1"
+    "@xstate/graph": "2.0.0-alpha.2"
   }
 }
